@@ -1,0 +1,111 @@
+/**********************************************************************
+ *
+ * button/obj.js
+ *
+ * author: Patrick Dooley
+ *
+ *
+ **********************************************************************/
+
+define
+(
+	[	
+		"../base/obj",
+		"kWStat/validate"
+	], 
+	function
+	(
+		base,
+		validate
+	)
+	{
+			
+	//*******************************************************************//
+	//***																	   
+	//***		public initializors
+	//***
+	//*******************************************************************//
+
+		function button()
+		{
+			//console.log("button::constructor");
+		}
+
+		button.prototype = new base();
+		button.prototype.constructor = button;
+		button.constructor = base.prototype.constructor;
+
+		button.prototype.check = function check()
+		{
+			base.prototype.check.call(this);
+			//console.log(this.logCalled());
+		};
+
+		button.prototype.init = function init()
+		{
+			//console.log(this.logCalled());
+			base.prototype.init.call(this);
+		};
+
+	//*******************************************************************//
+	//***																	   
+	//***		public accessors
+	//***
+	//*******************************************************************//
+
+	//*******************************************************************//
+	//***																	   
+	//***		public callbuttonacks
+	//***
+	//*******************************************************************//
+	
+	//*******************************************************************//
+	//***																	   
+	//***		public methods
+	//***
+	//*******************************************************************//
+
+	//*******************************************************************//
+	//***																	   
+	//***		private methods (non-overrides)
+	//***
+	//*******************************************************************//
+	
+		button.prototype.baseCreateOR = function()
+		{
+			this.buttonCreate();
+		};
+		
+		button.prototype.baseInitOR = function()
+		{
+			this.buttonInit();
+		};
+		
+	//*******************************************************************//
+	//***																	   
+	//***		private methods (overrides)
+	//***
+	//*******************************************************************//
+
+	//*******************************************************************//
+	//***																	   
+	//***		private methods
+	//***
+	//*******************************************************************//
+
+		button.prototype.buttonCreate = 
+			function buttonCreate()
+		{
+			//console.log(this.logCalled());
+		};
+		
+		button.prototype.buttonInit = 
+			function buttonInit()
+		{
+			//console.log(this.logCalled());
+		};
+		
+		return button;
+
+	}
+);

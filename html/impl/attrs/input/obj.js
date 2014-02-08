@@ -268,10 +268,11 @@ define
 			function()
 		{
 			this.m_sKWValue = "";
-			if (this.m_kWValue)
+			if (!this.m_kWValue)
 			{
-				this.m_kWValue.clear();
+				this.inputCreateValueImpl();
 			}
+			this.m_kWValue.kWClear();
 		};
 		
 	//*******************************************************************//

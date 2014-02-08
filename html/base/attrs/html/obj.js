@@ -320,7 +320,7 @@ define
 			
 			if (!validate.isNotNull(this.m_kWText))
 			{
-				return;
+				this.htmlCreateTextImpl();
 			}
 			
 			this.m_kWText.clear();

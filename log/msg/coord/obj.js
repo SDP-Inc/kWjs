@@ -51,12 +51,12 @@ define
 
 			if (!validateNumber(this.m_nKWX))
 			{
-				this.bLogCheckInvalid("m_nKWX");
+				this.bLogInvalid("m_nKWX");
 			}
 
 			if (!validateNumber(this.m_nKWY))
 			{
-				this.bLogCheckInvalid("m_nKWY");
+				this.bLogInvalid("m_nKWY");
 			}
 
 			msg.prototype.check.call(this);
@@ -150,22 +150,22 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("coordCreateText");
+				this.bLogRepeated("coordCreateText");
 			}
 
 			if (!m_sKWTag)
 			{
-				this.bLogCheckInvalid("coordCreateText", m_sKWTag);
+				this.bLogInvalid("coordCreateText", m_sKWTag);
 			}
 
 			if (!validateNumber(this.m_nKWX))
 			{
-				this.bLogCheckInvalid("coordCreateText", "m_nKWX");
+				this.bLogInvalid("coordCreateText", "m_nKWX");
 			}
 
 			if (!validateNumber(this.m_nKWY))
 			{
-				this.bLogCheckInvalid("coordCreateText", "m_nKWY");
+				this.bLogInvalid("coordCreateText", "m_nKWY");
 			}
 
 			sTitle	     = this.m_sKWTag;

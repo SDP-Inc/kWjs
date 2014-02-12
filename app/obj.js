@@ -15,7 +15,6 @@ define
 (
 	[
 		"./persist/obj",
-		"./resize/obj",
 		"./state/obj",
 		"./text/obj",
 		"stat/globals",
@@ -26,7 +25,6 @@ define
 	function
 	(
 		persist,
-		resize,
 		state,
 		text,
 		globals,
@@ -154,18 +152,12 @@ define
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
-
-		app.prototype.appCreatePersistOR  =
+		
+		app.prototype.appCreatePersistOR  = 
 			function appCreatePersistOR()
-			{
-				return new persist();
-			};
-
-		app.prototype.appCreateResizeOR  =
-			function appCreateResizeOR()
-			{
-				return new resize();
-			};
+		{
+			return new persist();
+		};
 
 		app.prototype.appCreateStateOR  =
 			function appCreateStateOR()

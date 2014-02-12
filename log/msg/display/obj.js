@@ -51,7 +51,7 @@ define
 
 			if (!this.m_sKWTag)
 			{
-				this.bLogCheckInvalid("m_sKWTag");
+				this.bLogInvalid("m_sKWTag");
 			}
 
 			msg.prototype.check.call(this);
@@ -131,12 +131,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("displayCreateText");
+				this.bLogRepeated("displayCreateText");
 			}
 
 			if (!this.m_sKWTag)
 			{
-				this.bLogCheckInvalid("displayCreateText", "m_sKWTag");
+				this.bLogInvalid("displayCreateText", "m_sKWTag");
 			}
 
 			this.m_sKWText = "[" + this.m_sKWTag + "] is [" + this.m_kWVal + "]";

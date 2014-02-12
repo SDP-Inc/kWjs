@@ -50,7 +50,7 @@ define
 
 			if (!this.m_sKWText)
 			{
-				this.bLogCheckInvalid("m_sKWText");
+				this.bLogInvalid("m_sKWText");
 			}
 
 			msg.prototype.check.call(this);

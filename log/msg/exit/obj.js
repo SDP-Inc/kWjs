@@ -50,7 +50,7 @@ define
 
 			if (!this.m_sKWExited)
 			{
-				this.bLogCheckInvalid("m_sKWExited");
+				this.bLogInvalid("m_sKWExited");
 			}
 
 			msg.prototype.check.call(this);
@@ -112,12 +112,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("exitCreateText");
+				this.bLogRepeated("exitCreateText");
 			}
 
 			if (!this.m_sKWExited)
 			{
-				this.bLogCheckInvalid("exitCreateText", "m_sKWExited");
+				this.bLogInvalid("exitCreateText", "m_sKWExited");
 			}
 
 			this.m_sKWText = this.m_sKWExited;

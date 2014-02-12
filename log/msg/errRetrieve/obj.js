@@ -51,12 +51,12 @@ define
 
 			if (!this.m_sError)
 			{
-				this.bLogCheckInvalid("m_sError");
+				this.bLogInvalid("m_sError");
 			}
 
 			if (!this.m_sKWTag)
 			{
-				this.bLogCheckInvalid("m_sKWTag");
+				this.bLogInvalid("m_sKWTag");
 			}
 
 			msg.prototype.check.call(this);
@@ -130,12 +130,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("erCreateText");
+				this.bLogRepeated("erCreateText");
 			}
 
 			if (!this.m_sError)
 			{
-				this.bLogCheckInvalid("erCreateText", "m_sError");
+				this.bLogInvalid("erCreateText", "m_sError");
 			}
 
 			if (!this.m_sKWTag)

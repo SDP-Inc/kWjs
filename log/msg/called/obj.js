@@ -104,12 +104,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("calledCreateText");
+				this.bLogRepeated("calledCreateText");
 			}
 
 			if (!this.m_sKWMode)
 			{
-				this.bLogCheckInvalid("calledCreateText", "m_sCalled");
+				this.bLogInvalid("calledCreateText", "m_sCalled");
 			}
 
 			this.m_sKWText = this.m_sKWMode;

@@ -50,7 +50,7 @@ define
 
 			if (!this.m_sKWRepeated)
 			{
-				this.bLogCheckInvalid("m_sKWRepeated");
+				this.bLogInvalid("m_sKWRepeated");
 			}
 			
 			msg.prototype.check.call(this);
@@ -112,12 +112,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("repeatedCreateText");
+				this.bLogRepeated("repeatedCreateText");
 			}
 
 			if (!this.m_sKWRepeated)
 			{
-				this.bLogCheckInvalid("repeatedCreateText", "m_sKWRepeated");
+				this.bLogInvalid("repeatedCreateText", "m_sKWRepeated");
 			}
 
 			this.m_sKWText = this.m_sKWRepeated;

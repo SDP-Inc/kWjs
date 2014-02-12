@@ -49,7 +49,7 @@ define
 
 			if (!this.m_sKWNotImpl)
 			{
-				this.bLogCheckInvalid("m_sKWNotImpl");
+				this.bLogInvalid("m_sKWNotImpl");
 			}
 			
 			msg.prototype.check.call(this);
@@ -111,12 +111,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("notImplCreateText");
+				this.bLogRepeated("notImplCreateText");
 			}
 
 			if (!this.m_sKWNotImpl)
 			{
-				this.bLogCheckInvalid("notImplCreateText", "m_sKWNotImpl");
+				this.bLogInvalid("notImplCreateText", "m_sKWNotImpl");
 			}
 
 			this.m_sKWText = this.m_sKWNotImpl;

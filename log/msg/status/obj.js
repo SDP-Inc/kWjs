@@ -49,7 +49,7 @@ define
 
 			if (!this.m_sKWStatus)
 			{
-				this.bLogCheckInvalid("m_sKWStatus");
+				this.bLogInvalid("m_sKWStatus");
 			}
 			
 			msg.prototype.check.call(this);
@@ -113,12 +113,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("statusCreateText");
+				this.bLogRepeated("statusCreateText");
 			}
 
 			if (!this.m_sKWStatus)
 			{
-				this.bLogCheckInvalid("statusCreateText", "m_sKWStatus");
+				this.bLogInvalid("statusCreateText", "m_sKWStatus");
 			}
 
 			this.m_sKWText = this.m_sKWStatus;

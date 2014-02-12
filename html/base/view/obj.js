@@ -76,7 +76,7 @@ define
 	
 		function base() 
 		{
-			//console.log("base::constructor");
+			//console.log("base(view)::constructor");
 			
 			this.m_kWAccessKey		    = null;
 			this.m_kWClass			    = null;

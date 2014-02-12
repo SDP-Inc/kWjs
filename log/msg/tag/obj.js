@@ -130,17 +130,17 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("tagCreateText");
+				this.bLogRepeated("tagCreateText");
 			}
 
 			if (!this.m_sKWTag)
 			{
-				this.bLogCheckInvalid("tagCreateText", "m_sKWTag");
+				this.bLogInvalid("tagCreateText", "m_sKWTag");
 			}
 
 			if (!this.m_sKWValue)
 			{
-				this.bLogCheckInvalid("tagCreateText", "m_sKWValue");
+				this.bLogInvalid("tagCreateText", "m_sKWValue");
 			}
 
 			this.m_sKWText = this.m_sKWTag + "[" + this.m_sKWValue + "}";

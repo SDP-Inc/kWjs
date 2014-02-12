@@ -67,6 +67,9 @@ define
 			this.m_bKWSpellCheck		= null;
 			
 			this.m_nKWTabIndex			= -1;
+
+			this.m_bKWHtmlRetrieved     = false;
+			this.m_bKWTitleRetrieved    = false;
 		}
 
 		elmt.prototype = new mvc();
@@ -942,11 +945,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWAccessKey))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1000,11 +998,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWClassOff))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1030,11 +1023,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWClassOn))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1062,11 +1050,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sContentEditable))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1093,11 +1076,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWContextMenu))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1123,11 +1101,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWDir))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1155,11 +1128,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sDraggable))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1186,11 +1154,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWDropZone))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1243,17 +1206,7 @@ define
 			//console.log(this.kWLogCalled());
 
 			this.elmtRetrieveHtmlField();
-			if (validate.isString(this.m_sKWHtml))
-			{
-				return;
-			}
-
 			this.elmtRetrieveHtmlKey();
-			if (validate.isString(this.m_sKWHtml))
-			{
-				return;
-			}
-
 			this.elmtRetrieveHtmlView();
 		};	
 		
@@ -1262,6 +1215,11 @@ define
 		{
 			//console.log(this.kWLogCalled());
 
+			if (this.m_bKWHtmlRetrieved)
+			{
+			 	return;
+			}
+
 			if (this.m_bKWHasModel)
 			{
 				//console.debug(this.kWLogDisplay("m_bKWHasModel", this.m_bKWHasModel));
@@ -1269,6 +1227,7 @@ define
 				{
 					this.m_sKWHtml = this.m_kWValueField;
 					//console.debug(this.kWLogDisplay("m_sKWHtml", this.m_sKWHtml));
+					this.m_bKWHtmlRetrieved = true;
 				}
 			}
 		};	
@@ -1282,11 +1241,11 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWHtml))
+			if (this.m_bKWHtmlRetrieved)
 			{
-				return;
+			 	return;
 			}
-			
+
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1302,6 +1261,7 @@ define
 			if (validate.isString(this.m_sKWHtml))
 			{
 				//console.debug(this.kWLogDisplay("m_sKWHtml", this.m_sKWHtml));
+				this.m_bKWHtmlRetrieved = true;
 			}
 		};
 		
@@ -1312,11 +1272,11 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWHtml))
+			if (this.m_bKWHtmlRetrieved)
 			{
-				return;
+			 	return;
 			}
-			
+
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1332,6 +1292,7 @@ define
 			if (validate.isString(this.m_sKWHtml))
 			{
 				//console.debug(this.kWLogDisplay("m_sKWHtml", this.m_sKWHtml));
+				this.m_bKWHtmlRetrieved = true;
 			}
 		};
 		
@@ -1370,11 +1331,6 @@ define
 			
 			console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWLang))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1398,11 +1354,6 @@ define
 		{
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWText))
-			{
-			    return; 
-			}
-			
 			if (!validate.isString(this.m_sField))
 			{
 				return
@@ -1498,11 +1449,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWStyle))
-			{
-				console.error(this.kWLogRepeated());
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1554,11 +1500,6 @@ define
 		{
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWText))
-			{
-				return;
-			}
-			
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1595,11 +1536,11 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWTitle))
+			if (this.m_bKWTitleRetrieved)
 			{
-				console.error(this.kWLogRepeated());
+				return;
 			}
-			
+
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -1623,6 +1564,7 @@ define
 			if (validate.isString(this.m_sKWTitle))
 			{
 				//console.debug(this.kWLogDisplay("m_sKWTitle", this.m_sKWTitle));
+				this.m_bKWTitleRetrieved = true;
 			}
 		};
 		
@@ -1633,7 +1575,7 @@ define
 			
 			//console.log(this.kWLogCalled());
 
-			if (validate.isString(this.m_sKWTitle))
+			if (this.m_bKWTitleRetrieved)
 			{
 				return;
 			}
@@ -1653,6 +1595,7 @@ define
 			if (validate.isString(this.m_sKWTitle))
 			{
 				//console.debug(this.kWLogDisplay("m_sKWTitle", this.m_sKWTitle));
+				this.m_bKWTitleRetrieved = true;
 			}
 		};
 		

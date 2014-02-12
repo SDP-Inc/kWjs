@@ -110,12 +110,12 @@ define
 
 			if (this.m_sKWText)
 			{
-				this.kWLogRepeated("successCreateText");
+				this.bLogRepeated("successCreateText");
 			}
 
 			if (!this.m_sSuccess)
 			{
-				this.bLogCheckInvalid("successCreateText", "m_sSuccess");
+				this.bLogInvalid("successCreateText", "m_sSuccess");
 			}
 
 			this.m_sKWText = this.m_sSuccess;

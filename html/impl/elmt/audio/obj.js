@@ -233,11 +233,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_bKWControls))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -319,11 +314,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWPreload))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -349,11 +339,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWSrc))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));

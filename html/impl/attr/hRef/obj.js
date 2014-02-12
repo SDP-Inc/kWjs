@@ -113,7 +113,7 @@ define
 		hRef.prototype.hRefRetrieve = 
 			function hRefRetrieve()
 		{
-			//console.log(this.kWLogCalled());
+			console.log(this.kWLogCalled());
 			
 			if (validate.isNotNull(this.m_kWValueView))
 			{

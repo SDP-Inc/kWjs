@@ -36,7 +36,7 @@ define
 
 		function base()
 		{
-			//console.log("elmt::constructor");
+			//console.log("base(elmt)::constructor");
 
 			this.m_sKWTag		= "base";
 			
@@ -48,14 +48,14 @@ define
 		base.prototype.constructor = base;
 		base.constructor = elmt.prototype.constructor;
 
-		base.prototype.check = 
+		base.prototype.check =
 			function check()
 		{
 			elmt.prototype.check.call(this);
 			//console.log(this.kWLogCalled());
 		};
 
-		base.prototype.init = 
+		base.prototype.init =
 			function init()
 		{
 			//console.log(this.kWLogCalled());
@@ -86,25 +86,25 @@ define
 	//***
 	//*******************************************************************//
 	
-		base.prototype.elmtCreateAttrsOR = 
+		base.prototype.elmtCreateAttrsOR =
 			function()
 		{
 			return this.baseCreateAttrs(); 
 		};
 		
-		base.prototype.elmtCreateViewOR = 
+		base.prototype.elmtCreateViewOR =
 			function()
 		{
 			return this.baseCreateView();
 		};
 		
-		base.prototype.elmtInitOR = 
+		base.prototype.elmtInitOR =
 			function()
 		{
 			this.baseInit();
 		};
 		
-		base.prototype.elmtRetrieveOR = 
+		base.prototype.elmtRetrieveOR =
 			function()
 		{
 			this.baseRetrieve();
@@ -116,7 +116,7 @@ define
 	//***
 	//*******************************************************************//
 
-		base.prototype.baseInitOR = 
+		base.prototype.baseInitOR =
 			function baseInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -128,7 +128,7 @@ define
 	//***
 	//*******************************************************************//
 
-		base.prototype.baseCreateAttrs = 
+		base.prototype.baseCreateAttrs =
 			function baseCreateAttrs()
 		{
 			theAttrs = null;
@@ -142,21 +142,21 @@ define
 			return theAttrs;
 		};
 
-		base.prototype.baseCreateView = 
+		base.prototype.baseCreateView =
 			function baseCreateView()
 		{
 			//console.log(this.kWLogCalled());
 			return new view();
 		};
 
-		base.prototype.baseInit = 
+		base.prototype.baseInit =
 			function baseInit()
 		{
 			//console.log(this.kWLogCalled());
 			this.baseInitOR();
 		};
 
-		base.prototype.baseRetrieve = 
+		base.prototype.baseRetrieve =
 			function baseRetrieve()
 		{
 			//console.log(this.kWLogCalled());
@@ -164,18 +164,13 @@ define
 			this.baseRetrieveTarget();
 		};
 
-		base.prototype.baseRetrieveHRef = 
+		base.prototype.baseRetrieveHRef =
 			function baseRetrieveHRef()
 		{
 			var value = null;
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWHRef))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -194,18 +189,13 @@ define
 			}
 		};
 		
-		base.prototype.baseRetrieveTarget = 
+		base.prototype.baseRetrieveTarget =
 			function baseRetrieveTarget()
 		{
 			var value = null;
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWTarget))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));

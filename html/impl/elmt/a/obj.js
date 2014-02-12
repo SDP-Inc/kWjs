@@ -50,6 +50,8 @@ define
 			this.m_sKWRel				= null;
 			this.m_sKWTarget			= null;
 			this.m_sKWType			    = null;
+
+			this.m_bKWHRefRetrieved     = false;
 		}
 
 		a.prototype = new elmt();
@@ -223,13 +225,9 @@ define
 			function aRetrieveHRef()
 		{
 			//console.log(this.kWLogCalled());
-			
+
 			this.aRetrieveHRefI18N()
-			
-			if (!validate.isString(this.m_sKWHRef))
-			{
-				this.aRetrieveHRefRaw();
-			}
+			this.aRetrieveHRefRaw();
 		};
 		
 		a.prototype.aRetrieveHRefI18N = 
@@ -239,9 +237,9 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWHRef))
+			if (this.m_bKWHRefRetrieved)
 			{
-				console.error(this.kWLogRepeated());
+				return;
 			}
 
 			if (!validate.isNotNull(this.m_kWView))
@@ -259,6 +257,7 @@ define
 			if (validate.isString(this.m_sKWHRef))
 			{
 				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+				this.m_bKWHRefRetrieved = true;
 			}
 		};
 		
@@ -269,11 +268,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWHRefLang))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -299,9 +293,9 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWHRefRaw))
+			if (this.m_bKWHRefRetrieved)
 			{
-				console.error(this.kWLogRepeated());
+				return;
 			}
 
 			if (!validate.isNotNull(this.m_kWView))
@@ -319,6 +313,7 @@ define
 			if (validate.isString(this.m_sKWHRef))
 			{
 				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+				this.m_bKWHRefRetrieved = true;
 			}
 		};
 		
@@ -358,11 +353,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWMedia))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -388,11 +378,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWRel))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));

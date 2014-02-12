@@ -1,6 +1,6 @@
 /**********************************************************************
  *
- * base_/obj.js
+ * base/obj.js
  *
  * author: Patrick Dooley
  *
@@ -23,7 +23,7 @@ define
 	(
 		hRef,
 		target,
-		base,
+		view,
 		validate
 	)
 	{
@@ -34,31 +34,31 @@ define
 	//***
 	//*******************************************************************//
 
-		function base_()
+		function base()
 		{
-			//console.log("base_::constructor");
+			//console.log("base(view)::constructor");
 			
 			this.m_kWHRef	= null;
 			this.m_kWTarget	= null;
 		}
 
-		base_.prototype = new base();
-		base_.prototype.constructor = base_;
-		base_.constructor = base.prototype.constructor;
+		base.prototype = new view();
+		base.prototype.constructor = base;
+		base.constructor = view.prototype.constructor;
 
-		base_.prototype.check =
+		base.prototype.check =
 			function check()
 		{
-			base.prototype.check.call(this);
+			view.prototype.check.call(this);
 			
 			//console.log(this.kWLogCalled());
 		};
 
-		base_.prototype.init =
+		base.prototype.init =
 			function init()
 		{
 			//console.log(this.kWLogCalled());
-			base.prototype.init.call(this);
+			view.prototype.init.call(this);
 		};
 
 	//*******************************************************************//
@@ -67,13 +67,13 @@ define
 	//***
 	//*******************************************************************//
 
-		base_.prototype.getKWHRef =
+		base.prototype.getKWHRef =
 			function()
 		{
 			return this.m_kWHRef;
 		};
 
-		base_.prototype.getKWTarget =
+		base.prototype.getKWTarget =
 			function()
 		{
 			return this.m_kWTarget;
@@ -97,22 +97,22 @@ define
 	//***
 	//*******************************************************************//
 	
-		base_.prototype.baseCreateOR = 
+		base.prototype.baseCreateOR = 
 			function()
 		{
-			this.base_Create();
+			this.baseCreate();
 		};
 
-		base_.prototype.baseDeleteOR =
-			function()
-			{
-				this.base_Delete();
-			};
-
-		base_.prototype.baseInitOR =
+		base.prototype.baseDeleteOR =
 			function()
 		{
-			this.base_Init();
+			this.baseDelete();
+		};
+
+		base.prototype.baseInitOR =
+			function()
+		{
+			this.baseInit();
 		};
 		
 	//*******************************************************************//
@@ -127,16 +127,16 @@ define
 	//***
 	//*******************************************************************//
 
-		base_.prototype.base_Create = 
-			function base_Create() 
+		base.prototype.baseCreate = 
+			function baseCreate() 
 		{
 			//console.log(this.kWLogCalled());
-			this.base_CreateHRef();
-			this.base_CreateTarget();
+			this.baseCreateHRef();
+			this.baseCreateTarget();
 		};
 		
-		base_.prototype.base_CreateHRef = 
-			function base_CreateHRef() 
+		base.prototype.baseCreateHRef = 
+			function baseCreateHRef() 
 		{
 			//console.log(this.kWLogCalled());
 			
@@ -161,8 +161,8 @@ define
 			this.kWAddValue(this.m_kWHRef);
 		};
 		
-		base_.prototype.base_CreateTarget = 
-			function base_CreateTarget() 
+		base.prototype.baseCreateTarget = 
+			function baseCreateTarget() 
 		{
 			//console.log(this.kWLogCalled());
 			
@@ -184,11 +184,11 @@ define
 			this.m_kWTarget.check();
 			this.m_kWTarget.init();
 
-			this.kWAddValue(this.m_kwIsClickHandled);
+			this.kWAddValue(this.m_kWTarget);
 		};
 
-		base_.prototype.base_Delete =
-			function base_Delete()
+		base.prototype.baseDelete =
+			function baseDelete()
 			{
 				//console.log(this.kWLogCalled());
 
@@ -196,8 +196,8 @@ define
 				this.m_kWTarget	= null;
 			};
 
-		base_.prototype.base_Init =
-			function base_Init()
+		base.prototype.baseInit =
+			function baseInit()
 		{
 			//console.log(this.kWLogCalled());
 		};

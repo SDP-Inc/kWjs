@@ -36,7 +36,7 @@ define
 
 		function base()
 		{
-			//console.log("base::constructor");
+			//console.log("base (attrs)::constructor");
 			
 			this.m_kWHRef		= null;
 			this.m_kWTarget	    = null;

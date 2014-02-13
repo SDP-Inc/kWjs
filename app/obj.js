@@ -42,7 +42,7 @@ define
 	
 		function app() 
 		{
-			//console.log("app::constructor");
+			console.log("app::constructor");
 
 			this.m_sKWExt		    = "app";
 			this.m_sKWID		    = "app";

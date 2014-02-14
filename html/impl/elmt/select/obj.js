@@ -139,7 +139,7 @@ define
 				throw new Error("select::callbackChangeIE() [sValue] invalid"); 
 			}
 
-			$select = $('#filter_body');
+			$select = $('#filter_regions_body');
 			if (!$select)
 			{
 			   throw new Error("select::callbackChangeIE() [$select] invalid"); 

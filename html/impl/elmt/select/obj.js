@@ -108,50 +108,13 @@ define
 			   throw new Error("select::callbackChange() [obj] invalid"); 
 			}
 
-			sValue = $(this).attr('value');
+			sValue = evt.currentTarget.value
 			if (!validate.isString(sValue))
 			{
 			   throw new Error("select::callbackChange() <sValue> invalid"); 
 			}
 
 			obj.click(sValue, sID);
-		};
-
-		select.prototype.callbackChangeIE =
-			function(evt)
-		{
-			var sValue  = null;
-			var $select = null;
-			var obj     = null;
-			var elmt    = null;
-
-			//console.log("select::callbackChangeIE() called")
-
-			elmt = evt.srcElement;
-			if (!elmt)
-			{
-				throw new Error("select::callbackChangeIE() [elmt] invalid"); 
-			}
-
-			sValue = elmt.value;
-			if (!validate.isString(sValue))
-			{
-				throw new Error("select::callbackChangeIE() [sValue] invalid"); 
-			}
-
-			$select = $('#filter_regions_body');
-			if (!$select)
-			{
-			   throw new Error("select::callbackChangeIE() [$select] invalid"); 
-			}
-
-			obj = $select.data("ctlr");
-			if (!obj)
-			{
-			   throw new Error("select::callbackChangeIE() [obj] invalid"); 
-			}
-			
-			obj.selectClick(sValue);
 		};
 
 	//*******************************************************************//
@@ -484,7 +447,7 @@ define
 			function selectSubscribe()
 		{
 			//console.log(this.kWLogCalled());
-			
+
 			if (!validate.isDom(this.m_kWDom))
 			{
 				console.error(this.kWLogInvalid("m_kWDom"));
@@ -495,20 +458,7 @@ define
 				console.error(this.kWLogInvalid("callbackChange"));
 			}
 
-			if (!validate.isFunction(this.callbackChangeIE))
-			{
-				console.error(this.kWLogInvalid("callbackChangeIE"));
-			}
-
-			if ($.browser.msie)
-			{    
-				var elmt = this.m_kWDom.get(0);
-				elmt.attachEvent("onchange", this.callbackChangeIE);
-			}
-			else
-			{
-				this.m_kWDom.change(this.callbackChange);
-			}
+			this.m_kWDom.change(this.callbackChange);
 		}
 		
 		return select;

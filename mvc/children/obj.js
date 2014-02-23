@@ -94,7 +94,7 @@ define
 		children.prototype.kWResize =
 			function()
 			{
-				this.childrenRefresh();
+				this.childrenResize();
 			};
 
 	//*******************************************************************//
@@ -137,6 +137,7 @@ define
 				if (!validate.isString(sID))
 				{
 					console.error(this.kWLogErrRetrieve("sID"));
+					sID = obj.getKWID();
 				}
 
 				this.kWAdd(sID, obj);

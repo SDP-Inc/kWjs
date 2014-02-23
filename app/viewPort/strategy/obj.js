@@ -1,9 +1,8 @@
 /**********************************************************************
  *
- * resize/obj.js
+ * strategy/obj.js
  *
  * author: Patrick Dooley
- *
  *
  **********************************************************************
  *
@@ -14,131 +13,135 @@
 define
 (
 	[
-		"kWMVC/obj",
+		"kWLog/obj",
 		"kWStat/validate",
 		"jquery"
 	],
 	function
 	(
-		mvc,
+		log,
 		validate,
 		$
 	)
 	{
 
 	//*******************************************************************//
-	//***																	   
+	//***
 	//***		public initializors
 	//***
 	//*******************************************************************//
 
-		function resize()
+		function strategy()
 		{
-			//console.log("resize::constructor")
-			this.m_sKWExt = "resize";
+			//console.log("strategy::constructor")
+
+			this.m_sKWExt      = "strategy";
+
+			this.m_nKWWidth       = -1;
+			this.m_nKWHeight      = -1;
 		}
 
-		resize.prototype = new mvc();
-		resize.prototype.constructor = resize;
-		resize.constructor = mvc.prototype.constructor;
-		
-		resize.prototype.check = function check()
+		strategy.prototype = new log();
+		strategy.prototype.constructor = strategy;
+		strategy.constructor = log.prototype.constructor;
+
+		strategy.prototype.check =
+			function check()
 		{
-			mvc.prototype.check.call(this);
+			log.prototype.check.call(this);
 			//console.log(this.kWLogCalled());
 		};
 
-		resize.prototype.init = function init()
+		strategy.prototype.init =
+			function init()
 		{
 			//console.log(this.kWLogCalled());
-			mvc.prototype.init.call(this);
-		};  
+			log.prototype.init.call(this);
+		};
 
 	//*******************************************************************//
-	//***																	   
+	//***
 	//***		public accessors
 	//***
 	//*******************************************************************//
 
+		strategy.prototype.getKWHeight =
+			function()
+		{
+			return this.m_nKWHeight;
+		};
+
+		strategy.prototype.getKWWidth =
+			function()
+		{
+			return this.m_nKWWidth;
+		};
+
 	//*******************************************************************//
-	//***																	   
-	//***		public callbacks
 	//***
-	//*******************************************************************//
-	
-	//*******************************************************************//
-	//***																	   
 	//***		public methods
 	//***
 	//*******************************************************************//
 
-		resize.prototype.resize = function()
+		strategy.prototype.resize = function()
 		{
-			this.resizeFired();
+			this.strategyResize();
 		};
 
 	//*******************************************************************//
-	//***																		
+	//***
 	//***		private methods (non-overrides)
 	//***
 	//*******************************************************************//
-		
-		resize.prototype.mvcHandleCBDefaultOR  = function()
-		{
-			this.resizeHandleCBDefault();
-		};
 
-		resize.prototype.mvcInitOR = function()
+		strategy.prototype.uBLInitOR = function()
 		{
-			this.resizeInit();
+			this.strategyInit();
 		};
 
 	//*******************************************************************//
-	//***																		
+	//***
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
 
-		resize.prototype.resizeFiredOR = 
-			function resizeFiredOR()
+		strategy.prototype.StrategyInitOR =
+			function StrategyInitOR()
 		{
-			//console.error(this.kWLogNotImpl());
+			this.kWLogNotImpl();
 		};
 
-		resize.prototype.resizeInitOR = 
-			function resizeInitOR()
+		strategy.prototype.StrategyResizeOR =
+			function StrategyResizeOR()
 		{
-			//console.error(this.kWLogNotImpl());
+			this.kWLogNotImpl();
 		};
+
 
 	//*******************************************************************//
-	//***																	   
+	//***
 	//***		private methods
 	//***
 	//*******************************************************************//
 
-		resize.prototype.resizeFired = 
-			function resizeFired()
+		strategy.prototype.strategyInit =
+			function strategyInit()
 		{
-			//console.log(this.kWLogCalled())
-			this.resizeFiredOR();
+			//console.log(this.kWLogCalled());
+
+			this.strategyInitOR();
 		};
-		
-		resize.prototype.resizeHandleCBDefault = 
-			function resizeHandleCBDefault()
+
+		strategy.prototype.strategyResize =
+			function strategyResize()
 		{
-			//console.log(this.kWLogCalled())
-			this.resizeFired();
+			//console.log(this.kWLogCalled());
+
+			this.strategyResizeOR();
 		};
-		
-		resize.prototype.resizeInit = 
-			function resizeInit()
-		{
-			//console.log(this.kWLogCalled())
-			this.resizeInitOR();
-		};
-		
-		return resize;
-		
+
+		return strategy;
+
 	}
+
 )

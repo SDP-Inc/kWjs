@@ -113,20 +113,20 @@ define
 
 		log.prototype.kWDelete =
 			function()
-			{
-				this.uBLDelete();
-			};
+		{
+			this.uBLDelete();
+		};
 
 		log.prototype.kWLogCalled =
 			function()
+		{
+			if (!this.m_bKWInit)
 			{
-				if (!this.m_bKWInit)
-				{
-					return "log::kWLogCalled() failed - still initializing";
-				}
-				var sMethod = arguments.callee.caller.name;
-				return this.uBLLogCalled(sMethod);
-			};
+				return "log::kWLogCalled() failed - still initializing";
+			}
+			var sMethod = arguments.callee.caller.name;
+			return this.uBLLogCalled(sMethod);
+		};
 
 		log.prototype.kWLogCoord =
 			function(nX, nY)
@@ -262,6 +262,12 @@ define
 			return this.uBLLogSuccess(sMethod);
 		};
 
+		log.prototype.kWResize =
+			function()
+		{
+			this.uBLResize();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***				protected (accessible)
@@ -276,15 +282,15 @@ define
 
 		log.prototype.uBLDeleteOR =
 			function uBLDeleteOR()
-			{
-				console.error(this.bLogNotImpl());
-			};
+		{
+			console.error(this.bLogNotImpl());
+		};
 
 		log.prototype.uBLInitOR =
 			function uBLInitOR()
-			{
-				console.error(this.bLogNotImpl());
-			};
+		{
+			console.error(this.bLogNotImpl());
+		};
 
 		log.prototype.uBLRetrieveIDParentOR =
 			function uBLRetrieveIDParentOR()
@@ -292,6 +298,12 @@ define
 			console.error(this.bLogNotImpl());
 		};
 		
+		log.prototype.uBLResizeOR =
+			function uBLResizeOR()
+		{
+			//console.error(this.bLogNotImpl());
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***				protected (non-overridable)
@@ -608,7 +620,15 @@ define
 			return msg.getKWMsg();
 		};
 
-		log.prototype.uBLRetrieveIDParent = 
+		log.prototype.uBLResize =
+			function uBLResize()
+		{
+			//console.log(this.bLogCalled());
+
+			this.uBLResizeOR();
+		};
+
+		log.prototype.uBLRetrieveIDParent =
 			function uBLRetrieveIDParent()
 		{
 			//console.log(this.bLogCalled());
@@ -621,26 +641,26 @@ define
 			}
 		};
 		
-		log.prototype.uBLRetrieveJSClass = 
+		log.prototype.uBLRetrieveJSClass =
 			function uBLRetrieveJSClass()
 		{
 			//console.log(this.bLogCalled());
-			
+
 			this.m_sKWJSClass = this.constructor.name;
 			if (!validate.isString(this.m_sKWJSClass))
 			{
 				this.m_sKWJSClass = this.m_sKWExt;
 			}
-			
+
 			if (!validate.isString(this.m_sKWJSClass))
 			{
 				this.m_sKWJSClass = "unknown";
 			}
-			
+
 			//console.log(this.bLogDisplay("m_sJSClass", this.m_sKWJSClass));
 		};
-		
-		log.prototype.uBLRetrieveLang = 
+
+		log.prototype.uBLRetrieveLang =
 			function uBLRetrieveLang() 
 		{
 			//console.log(this.kWLogCalled());

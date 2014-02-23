@@ -107,18 +107,30 @@ define
 	//***
 	//*******************************************************************//
 
+		elmt.prototype.getKWHeight =
+			function()
+		{
+			return this.elmtGetHeight();
+		};
+
 		elmt.prototype.getKWHtml =
 			function()
-			{
-				return this.elmtGetHtml();
-			};
+		{
+			return this.elmtGetHtml();
+		};
+
+		elmt.prototype.getKWWidth =
+			function()
+		{
+			return this.elmtGetWidth();
+		};
 
 		elmt.prototype.setKWClass =
 			function(sVal)
-			{
-				this.m_sKWClass = sVal;
-				this.elmtSetClass();
-			};
+		{
+			this.m_sKWClass = sVal;
+			this.elmtSetClass();
+		};
 
 		elmt.prototype.setKWHtml =
 			function(sVal)
@@ -133,6 +145,12 @@ define
 			this.elmtSetAttr(sKey, sVal);
 		};
 
+		elmt.prototype.setKWHeight =
+			function(nVal)
+		{
+			this.elmtSetHeight(nVal);
+		};
+
 		elmt.prototype.setKWParent =
 			function(obj)
 		{
@@ -144,6 +162,12 @@ define
 		{
 			this.m_sKWText = sVal;
 			this.elmtSetText(sVal);
+		};
+
+		elmt.prototype.setKWWidth =
+			function(nVal)
+		{
+			this.elmtSetWidth(nVal);
 		};
 
 	//*******************************************************************//
@@ -196,9 +220,9 @@ define
 
 		elmt.prototype.kWClear =
 			function()
-			{
-				this.elmtClear();
-			};
+		{
+			this.elmtClear();
+		};
 
 		elmt.prototype.kWClearClass =
 			function()
@@ -214,27 +238,27 @@ define
 
 		elmt.prototype.kWClassOn =
 			function()
-			{
-				this.elmtClassOn();
-			};
+		{
+			this.elmtClassOn();
+		};
 
 		elmt.prototype.kWEmptyDom =
 			function()
-			{
-				this.elmtEmptyDom();
-			};
+		{
+			this.elmtEmptyDom();
+		};
 
 		elmt.prototype.kWHide =
 			function()
-			{
-				this.elmtHide();
-			};
+		{
+			this.elmtHide();
+		};
 
 		elmt.prototype.kWRemove =
 			function()
-			{
-				this.elmtRemove();
-			};
+		{
+			this.elmtRemove();
+		};
 
 		elmt.prototype.kWSubscribeClick =
 			function() 
@@ -262,21 +286,21 @@ define
 
 		elmt.prototype.mvcCreateViewOR =
 			function()
-			{
-				return this.elmtCreateView();
-			};
+		{
+			return this.elmtCreateView();
+		};
 
 		elmt.prototype.mvcDeleteOR =
 			function()
-			{
-				this.elmtDelete();
-			};
+		{
+			this.elmtDelete();
+		};
 
 		elmt.prototype.mvcEmptyOR =
 			function()
-			{
-				this.elmtEmpty();
-			};
+		{
+			this.elmtEmpty();
+		};
 
 		elmt.prototype.mvcInitOR =
 			function()
@@ -310,21 +334,21 @@ define
 
 		elmt.prototype.elmtCreateViewOR =
 			function elmtCreateViewOR()
-			{
-				console.error(this.kWLogNotImpl());
-			};
+		{
+			console.error(this.kWLogNotImpl());
+		};
 
 		elmt.prototype.elmtDeleteOR =
 			function elmtDeleteOR()
-			{
-				//console.error(this.kWLogNotImpl());
-			};
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 		elmt.prototype.elmtEmptyOR =
 			function elmtEmptyOR()
-			{
-				//console.error(this.kWLogNotImpl());
-			};
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 		elmt.prototype.elmtHandleClickOR =
 			function elmtHandleClickOR()
@@ -340,9 +364,9 @@ define
 
 		elmt.prototype.elmtInitOR =
 			function elmtInitOR()
-			{
-				console.error(this.kWLogNotImpl());
-			};
+		{
+			console.error(this.kWLogNotImpl());
+		};
 
 		elmt.prototype.elmtRetrieveOR =
 			function elmtRetrieveOR()
@@ -358,21 +382,21 @@ define
 
 		elmt.prototype.elmtAppendDom =
 			function elmtAppendDom()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isDom(this.m_kWDom))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWDom"));
+			}
 
-				if (!validate.isDom(this.m_kWDom))
-				{
-					console.error(this.kWLogInvalid("m_kWDom"));
-				}
+			if (!validate.isDom(this.m_kWDomTemp))
+			{
+				console.error(this.kWLogInvalid("m_kWDomTemp"));
+			}
 
-				if (!validate.isDom(this.m_kWDomTemp))
-				{
-					console.error(this.kWLogInvalid("m_kWDomTemp"));
-				}
-
-				this.m_kWDomTemp.before(this.m_kWDom);
-			};
+			this.m_kWDomTemp.before(this.m_kWDom);
+		};
 
 		elmt.prototype.elmtClassOff =
 			function elmtClassOff()
@@ -432,151 +456,151 @@ define
 
 		elmt.prototype.elmtClear =
 			function elmtClear()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid());
+			}
 
-				if (!validate.isNotNull(this.m_kWAttrs))
-				{
-					console.error(this.kWLogInvalid());
-				}
+			this.m_kWAttrs.clearText();
 
-				this.m_kWAttrs.clearText();
-
-				this.elmtClearOR();
-			};
+			this.elmtClearOR();
+		};
 
 		elmt.prototype.elmtClearClass =
 			function elmtClearClass()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid());
+			}
 
-				if (!validate.isNotNull(this.m_kWAttrs))
-				{
-					console.error(this.kWLogInvalid());
-				}
-
-				this.m_kWAttrs.clearClass();
-			};
+			this.m_kWAttrs.clearClass();
+		};
 
 		elmt.prototype.elmtCreateAttrs =
 			function elmtCreateAttrs()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isNotNull(this.m_kWAttrs))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogRepeated());
+			}
 
-				if (validate.isNotNull(this.m_kWAttrs))
-				{
-					console.error(this.kWLogRepeated());
-				}
+			if (!validate.isDom(this.m_kWDom))
+			{
+				console.error(this.kWLogInvalid("m_kWDom"));
+			}
 
-				if (!validate.isDom(this.m_kWDom))
-				{
-					console.error(this.kWLogInvalid("m_kWDom"));
-				}
+			if (!validate.isString(this.m_sKWID))
+			{
+				console.error(this.kWLogInvalid("m_sKWID"));
+			}
 
-				if (!validate.isString(this.m_sKWID))
-				{
-					console.error(this.kWLogInvalid("m_sKWID"));
-				}
+			if (!validate.isString(this.m_sKWClass))
+			{
+				console.error(this.kWLogInvalid("m_sKWClass"));
+			}
 
-				if (!validate.isString(this.m_sKWClass))
-				{
-					console.error(this.kWLogInvalid("m_sKWClass"));
-				}
+			if (!validate.isNotNull(this.m_kWView))
+			{
+				console.error(this.kWLogInvalid("m_kWView"));
+			}
 
-				if (!validate.isNotNull(this.m_kWView))
-				{
-					console.error(this.kWLogInvalid("m_kWView"));
-				}
+			this.m_kWAttrs = this.elmtCreateAttrsOR();
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				console.error(this.kWLogErrCreate("m_kWAttrs"));
+			}
 
-				this.m_kWAttrs = this.elmtCreateAttrsOR();
-				if (!validate.isNotNull(this.m_kWAttrs))
-				{
-					console.error(this.kWLogErrCreate("m_kWAttrs"));
-				}
+			this.m_kWAttrs.setKWClass(this.m_sKWClass);
+			this.m_kWAttrs.setKWDom(this.m_kWDom);
+			this.m_kWAttrs.setKWID(this.m_sKWID);
 
-				this.m_kWAttrs.setKWClass(this.m_sKWClass);
-				this.m_kWAttrs.setKWDom(this.m_kWDom);
-				this.m_kWAttrs.setKWID(this.m_sKWID);
+			if (validate.isString(this.m_sKWAccessKey))
+			{
+				this.m_kWAttrs.setKWAccessKey(this.m_sKWAccessKey);
+			}
 
-				if (validate.isString(this.m_sKWAccessKey))
-				{
-					this.m_kWAttrs.setKWAccessKey(this.m_sKWAccessKey);
-				}
+			if (validate.isString(this.m_sKWContextMenu))
+			{
+				this.m_kWAttrs.setKWContextMenu(this.m_sKWContextMenu);
+			}
 
-				if (validate.isString(this.m_sKWContextMenu))
-				{
-					this.m_kWAttrs.setKWContextMenu(this.m_sKWContextMenu);
-				}
+			if (validate.isString(this.m_sKWDir))
+			{
+				this.m_kWAttrs.setKWDir(this.m_sKWDir);
+			}
 
-				if (validate.isString(this.m_sKWDir))
-				{
-					this.m_kWAttrs.setKWDir(this.m_sKWDir);
-				}
+			if (validate.isString(this.m_sKWDir))
+			{
+				this.m_kWAttrs.setKWDraggable(this.m_bKWDraggable);
+			}
 
-				if (validate.isString(this.m_sKWDir))
-				{
-					this.m_kWAttrs.setKWDraggable(this.m_bKWDraggable);
-				}
+			if (validate.isString(this.m_sKWDir))
+			{
+				this.m_kWAttrs.setKWDropZone(this.m_sKWDropZone);
+			}
 
-				if (validate.isString(this.m_sKWDir))
-				{
-					this.m_kWAttrs.setKWDropZone(this.m_sKWDropZone);
-				}
+			if (validate.isString(this.m_sKWHtml))
+			{
+				this.m_kWAttrs.setKWHtml(this.m_sKWHtml);
+			}
 
-				if (validate.isString(this.m_sKWHtml))
-				{
-					this.m_kWAttrs.setKWHtml(this.m_sKWHtml);
-				}
+			if (validate.isBool(this.m_bKWContentEditable))
+			{
+				this.m_kWAttrs.setKWContentEditable(this.m_bKWContentEditable);
+			}
 
-				if (validate.isBool(this.m_bKWContentEditable))
-				{
-					this.m_kWAttrs.setKWContentEditable(this.m_bKWContentEditable);
-				}
+			if (validate.isBool(this.m_bKWSpellCheck))
+			{
+				this.m_kWAttrs.setKWSpellCheck(this.m_bKWSpellCheck);
+			}
 
-				if (validate.isBool(this.m_bKWSpellCheck))
-				{
-					this.m_kWAttrs.setKWSpellCheck(this.m_bKWSpellCheck);
-				}
+			if (validate.isNumberNotNeg(this.m_nKWTabIndex))
+			{
+				this.m_kWAttrs.setKWTabIndex(this.m_nKWTabIndex);
+			}
 
-				if (validate.isNumberNotNeg(this.m_nKWTabIndex))
-				{
-					this.m_kWAttrs.setKWTabIndex(this.m_nKWTabIndex);
-				}
+			this.m_kWAttrs.setKWText(this.m_sKWText);
+			this.m_kWAttrs.setKWTitle(this.m_sKWTitle);
+			this.m_kWAttrs.setKWView(this.m_kWView);
 
-				this.m_kWAttrs.setKWText(this.m_sKWText);
-				this.m_kWAttrs.setKWTitle(this.m_sKWTitle);
-				this.m_kWAttrs.setKWView(this.m_kWView);
-
-				this.m_kWAttrs.check();
-				this.m_kWAttrs.init();
-			};
+			this.m_kWAttrs.check();
+			this.m_kWAttrs.init();
+		};
 
 		elmt.prototype.elmtCreateClass =
 			function elmtCreateClass()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isString(this.m_sKWClass))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogRepeated());
+			}
 
-				if (validate.isString(this.m_sKWClass))
-				{
-					console.error(this.kWLogRepeated());
-				}
+			if (!validate.isString(this.m_sKWExt))
+			{
+				console.error(this.kWLogInvalid("m_sKWExt"));
+			}
 
-				if (!validate.isString(this.m_sKWExt))
-				{
-					console.error(this.kWLogInvalid("m_sKWExt"));
-				}
+			if (!validate.isString(this.m_sKWClassParent))
+			{
+				this.m_sKWClass = "";
+			}
+			else
+			{
+				this.m_sKWClass = this.m_sKWClassParent + "_" + this.m_sKWExt;
+			}
 
-				if (!validate.isString(this.m_sKWClassParent))
-				{
-					this.m_sKWClass = "";
-				}
-				else
-				{
-					this.m_sKWClass = this.m_sKWClassParent + "_" + this.m_sKWExt;
-				}
-
-				//console.debug(this.kWLogDisplay("m_sKWClass", this.m_sKWClass));
-			};
+			//console.debug(this.kWLogDisplay("m_sKWClass", this.m_sKWClass));
+		};
 
 		elmt.prototype.elmtCreateCss = 
 			function elmtCreateCss()
@@ -704,56 +728,56 @@ define
 
 		elmt.prototype.elmtDelete =
 			function elmtDelete()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isString(this.m_sKWAttrCtlr))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_sKWAttrCtlr"));
+			}
 
-				if (!validate.isString(this.m_sKWAttrCtlr))
-				{
-					console.error(this.kWLogInvalid("m_sKWAttrCtlr"));
-				}
+			if (validate.isNotNull(this.m_kWAttrs))
+			{
+				this.m_kWAttrs.kWDelete();
+			}
 
-				if (validate.isNotNull(this.m_kWAttrs))
-				{
-					this.m_kWAttrs.kWDelete();
-				}
+			this.m_kWAttrs = null;
 
-				this.m_kWAttrs = null;
+			this.m_kWDom.removeData(this.m_sKWAttrCtlr);
+			this.kWRemove();
+			this.elmtDeleteOR();
 
-				this.m_kWDom.removeData(this.m_sKWAttrCtlr);
-				this.kWRemove();
-				this.elmtDeleteOR();
+			if (validate.isNotNull(this.m_kWCSS))
+			{
+				this.m_kWCSS.kWDelete();
+			}
 
-				if (validate.isNotNull(this.m_kWCSS))
-				{
-					this.m_kWCSS.kWDelete();
-				}
-
-				this.m_kWCSS				= null;
-				this.m_kWDom				= null;
-				this.m_kWDomTemp			= null;
-				this.m_kWDomParent			= null;
-			};
+			this.m_kWCSS				= null;
+			this.m_kWDom				= null;
+			this.m_kWDomTemp			= null;
+			this.m_kWDomParent			= null;
+		};
 
 		elmt.prototype.elmtEmpty =
 			function elmtEmpty()
-			{
-				//console.log(this.kWLogCalled());
-				this.kWEmptyDom();
-				this.elmtEmptyOR();
-			};
+		{
+			//console.log(this.kWLogCalled());
+			this.kWEmptyDom();
+			this.elmtEmptyOR();
+		};
 
 		elmt.prototype.elmtEmptyDom =
 			function elmtEmptyDom()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isDom(this.m_kWDom))
 			{
-				//console.log(this.kWLogCalled());
+				return;
+			}
 
-				if (!validate.isDom(this.m_kWDom))
-				{
-					return;
-				}
-
-				this.m_kWDom.empty();
-			};
+			this.m_kWDom.empty();
+		};
 
 		elmt.prototype.elmtHandleClick =
 			function elmtHandleClick()
@@ -769,31 +793,57 @@ define
 			this.elmtHandleDoubleClickOR();
 		};
 
+		elmt.prototype.elmtGetHeight =
+			function elmtGetHeight()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isDom(this.m_kWDom))
+			{
+				console.error(this.kWLogInvalid("m_kWDom"));
+			}
+
+			return this.m_kWDom.height();
+		};
+
+		elmt.prototype.elmtGetWidth =
+			function elmtGetWidth()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isDom(this.m_kWDom))
+			{
+				console.error(this.kWLogInvalid("m_kWDom"));
+			}
+
+			return this.m_kWDom.width();
+		};
+
 		elmt.prototype.elmtGetHtml =
 			function elmtGetHtml()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWAttrs"));
+			}
 
-				if (!validate.isNotNull(this.m_kWAttrs))
-				{
-					console.error(this.kWLogInvalid("m_kWAttrs"));
-				}
-
-				return this.m_kWAttrs.getKWHtml();
-			};
+			return this.m_kWAttrs.getKWHtml();
+		};
 
 		elmt.prototype.elmtHide =
 			function elmtHide()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWCSS))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWCSS"));
+			}
 
-				if (!validate.isNotNull(this.m_kWCSS))
-				{
-					console.error(this.kWLogInvalid("m_kWCSS"));
-				}
-
-				this.m_kWCSS.hide();
-			};
+			this.m_kWCSS.hide();
+		};
 
 		elmt.prototype.elmtInit =
 			function elmtInit()
@@ -833,34 +883,34 @@ define
 
 		elmt.prototype.elmtLoadValue =
 			function elmtLoadValue()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isString(this.m_sMVCValue))
 			{
-				//console.log(this.kWLogCalled());
+				return;
+			}
 
-				if (!validate.isString(this.m_sMVCValue))
-				{
-					return;
-				}
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				console.error(this.kWLogInvalid("m_kWAttrs"));
+			}
 
-				if (!validate.isNotNull(this.m_kWAttrs))
-				{
-					console.error(this.kWLogInvalid("m_kWAttrs"));
-				}
-
-				this.m_kWAttrs.setBase(this.m_sMVCValue);
-			};
+			this.m_kWAttrs.setBase(this.m_sMVCValue);
+		};
 
 		elmt.prototype.elmtRemove =
 			function elmtRemove()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isDom(this.m_kWDom))
 			{
-				//console.log(this.kWLogCalled());
+				return;
+			}
 
-				if (!validate.isDom(this.m_kWDom))
-				{
-					return;
-				}
-
-				this.m_kWDom.remove();
-			};
+			this.m_kWDom.remove();
+		};
 
 		elmt.prototype.elmtRemoveAttrib =
 			function elmtRemoveAttrib(sKey)
@@ -1630,7 +1680,20 @@ define
 			this.m_kWAttrs.setKWClass(this.m_sKWClass);
 		};
 		
-		elmt.prototype.elmtSetHtml = 
+		elmt.prototype.elmtSetHeight =
+			function elmtSetHeight(nVal)
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWDom))
+			{
+				console.error(this.kWLogInvalid("m_kWDom"));
+			}
+
+			this.m_kWDom.height(nVal);
+		};
+
+		elmt.prototype.elmtSetHtml =
 			function elmtSetHtml()
 		{
 			//console.log(this.kWLogCalled());
@@ -1703,7 +1766,20 @@ define
 			}
 		};
 
-		elmt.prototype.elmtShow = 
+		elmt.prototype.elmtSetWidth =
+			function elmtSetWidth(nVal)
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWDom))
+			{
+				console.error(this.kWLogInvalid("m_kWDom"));
+			}
+
+			this.m_kWDom.width(nVal);
+		};
+
+		elmt.prototype.elmtShow =
 			function elmtShow()
 		{
 			//console.log(this.kWLogCalled());

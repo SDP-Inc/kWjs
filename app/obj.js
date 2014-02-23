@@ -17,7 +17,7 @@ define
 		"./persist/obj",
 		"./state/obj",
 		"./text/obj",
-		"stat/globals",
+		"./viewPort/obj",
 		"kWMVC/obj",
 		"kWStat/validate",
 		"jquery"
@@ -27,7 +27,7 @@ define
 		persist,
 		state,
 		text,
-		globals,
+		viewPort,
 		mvc,
 		validate,
 		$
@@ -57,6 +57,7 @@ define
 			this.m_kWDom		    = null;
 			this.m_kWResize	        = null;
 			this.m_kWText		    = null;
+ 			this.m_kWViewPort		= null;
 
 			this.m_sKWDate          = null;
 			this.m_sKWSubVersion    = null;
@@ -142,12 +143,7 @@ define
 			this.appInit();
 		};
 
-		app.prototype.mvcResizeOR = function()
-		{
-			this.appResize();
-		};
-
-		//*******************************************************************//
+	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
@@ -179,69 +175,38 @@ define
 
 		app.prototype.appCreatePersist =
 			function appCreatePersist()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (this.m_kWPersist)
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogRepeated());
+			}
 
-				if (this.m_kWPersist)
-				{
-					console.error(this.kWLogRepeated());
-				}
-
-				if(!validate.isString(this.m_sKWID))
-				{
-					console.error(this.kWLogInvalid("m_sKWID"));
-				}
-
-				if(!validate.isNotNull(this.m_kWView))
-				{
-					console.error(this.kWLogInvalid("m_kWView"));
-				}
-
-				this.m_kWPersist = this.appCreatePersistOR();
-				if(!validate.isNotNull(this.m_kWPersist))
-				{
-					console.error(this.kWLogInvalid("m_kWPersist"));
-				}
-
-				this.m_kWPersist.setKWIDParent(this.m_sKWID);
-				this.m_kWPersist.setKWViewParent(this.m_kWView);
-
-				this.m_kWPersist.check();
-				this.m_kWPersist.init();
-			};
-
-		app.prototype.appCreateResize =
-			function appCreateResize()
+			if(!validate.isString(this.m_sKWID))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_sKWID"));
+			}
 
-				if (this.m_kWResize)
-				{
-					console.error(this.kWLogRepeated());
-				}
+			if(!validate.isNotNull(this.m_kWView))
+			{
+				console.error(this.kWLogInvalid("m_kWView"));
+			}
 
-				if(!validate.isString(this.m_sKWID))
-				{
-					console.error(this.kWLogInvalid("m_sKWID"));
-				}
+			this.m_kWPersist = this.appCreatePersistOR();
+			if(!validate.isNotNull(this.m_kWPersist))
+			{
+				console.error(this.kWLogInvalid("m_kWPersist"));
+			}
 
-				if(!validate.isNotNull(this.m_kWView))
-				{
-					console.error(this.kWLogInvalid("m_kWView"));
-				}
+			this.m_kWPersist.setKWIDParent(this.m_sKWID);
+			this.m_kWPersist.setKWViewParent(this.m_kWView);
 
-				this.m_kWResize = this.appCreateResizeOR();
-				if(!validate.isNotNull(this.m_kWResize))
-				{
-					console.error(this.kWLogInvalid("m_kWResize"));
-				}
+			this.m_kWPersist.check();
+			this.m_kWPersist.init();
 
-				this.m_kWResize.setKWIDParent(this.m_sKWID);
-				this.m_kWResize.setKWViewParent(this.m_kWView);
-
-				this.m_kWResize.check();
-				this.m_kWResize.init();
-			};
+			this.kWAddChild(this.m_kWPersist);
+		};
 
 		app.prototype.appCreateState =
 			function appCreateState() 
@@ -274,6 +239,8 @@ define
 			
 			this.m_kWState.check();
 			this.m_kWState.init();
+
+			this.kWAddChild(this.m_kWState);
 		};
 
 		app.prototype.appCreateText =
@@ -303,6 +270,33 @@ define
 
 			this.m_kWText.check();
 			this.m_kWText.init();
+
+			this.kWAddChild(this.m_kWText);
+		};
+
+		app.prototype.appCreateViewPort =
+			function appCreateViewPort()
+		{
+			//console.log(this.kWLogCalled());
+
+			if(this.m_kWViewPort)
+			{
+				console.error(this.kWLogRepeated());
+			}
+
+			if(!validate.isString(this.m_sKWID))
+			{
+				console.error(this.kWLogInvalid("m_sKWID"));
+			}
+
+			this.m_kWViewPort = new viewPort();
+
+			this.m_kWViewPort.setKWIDParent(this.m_sKWID);
+
+			this.m_kWViewPort.check();
+			this.m_kWViewPort.init();
+
+			this.kWAddChild(this.m_kWViewPort);
 		};
 
 		app.prototype.appHandleCBReady =
@@ -311,8 +305,9 @@ define
 			//console.log(this.kWLogCalled());
 
 			this.appCreatePersist();
-			this.appCreateResize();
 			this.appCreateState();
+			this.appCreateViewPort();
+
 			this.appInitOR();
 		};
 
@@ -327,35 +322,22 @@ define
 			this.appCreateText();
 		};
 
-		app.prototype.appResize =
-			function appResize()
-			{
-				//console.log(this.kWLogCalled());
-
-				if (!validate.isNotNull(this.m_kWResize))
-				{
-					console.error(this.kWLogInvalid("m_kWResize"));
-				}
-
-				this.m_kWResize.resize();
-			};
-
 		app.prototype.appRetrieveBody =
 			function appRetrieveBody()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isDom(this.m_kWDom))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogRepeated());
+			}
 
-				if (validate.isDom(this.m_kWDom))
-				{
-					console.error(this.kWLogRepeated());
-				}
-
-				this.m_kWDom = $("body");
-				if (!validate.isDom(this.m_kWDom))
-				{
-					console.error(this.kWLogErrRetrieve("m_kWDom"));
-				}
-			};
+			this.m_kWDom = $("body");
+			if (!validate.isDom(this.m_kWDom))
+			{
+				console.error(this.kWLogErrRetrieve("m_kWDom"));
+			}
+		};
 
 		app.prototype.appRetrieveDate =
 			function appRetrieveDate()
@@ -418,11 +400,6 @@ define
 				if (!validate.isString(this.m_sKWKeyVersion))
 				{
 					console.error(this.kWLogInvalid("m_sKWKeyVersion"));
-				}
-
-				if(!validate.isNotNull(globals))
-				{
-					console.error(this.kWLogInvalid("globals"));
 				}
 
 				this.m_sKWVersion = this.getKWViewText(this.m_sKWKeyVersion);

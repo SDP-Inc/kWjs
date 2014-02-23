@@ -248,21 +248,21 @@ define
 
 		mvc.prototype.kWAddChild =
 			function(obj)
-			{
-				this.mvcAddChild(obj);
-			};
+		{
+			this.mvcAddChild(obj);
+		};
 
 		mvc.prototype.kWEmpty =
 			function()
-			{
-				this.mvcEmpty();
-			};
+		{
+			this.mvcEmpty();
+		};
 
 		mvc.prototype.kWLoad =
 			function()
-			{
-				this.mvcLoad();
-			};
+		{
+			this.mvcLoad();
+		};
 
 		mvc.prototype.kWPublish =
 			function(sTopic, data) 
@@ -290,15 +290,9 @@ define
 
 		mvc.prototype.kWRefresh =
 			function()
-			{
-				this.mvcRefresh();
-			};
-
-		mvc.prototype.kWResize =
-			function()
-			{
-				this.mvcResize();
-			};
+		{
+			this.mvcRefresh();
+		};
 
 		mvc.prototype.kWSubscribe =
 			function(sTopic) 
@@ -308,21 +302,21 @@ define
 
 		mvc.prototype.kWUnSubscribeDefault =
 			function()
-			{
-				this.mvcUnSubscribeDefault();
-			};
+		{
+			this.mvcUnSubscribeDefault();
+		};
 
 		mvc.prototype.kWUnSubscribeReady =
 			function()
-			{
-				this.mvcUnSubscribeReady();
-			};
+		{
+			this.mvcUnSubscribeReady();
+		};
 
 		mvc.prototype.kWUnSubscribeResize =
 			function()
-			{
-				this.mvcUnSubscribeResize();
-			};
+		{
+			this.mvcUnSubscribeResize();
+		};
 
 	//*******************************************************************//
 	//***																	   
@@ -338,17 +332,23 @@ define
 
 		mvc.prototype.uBLDeleteOR =
 			function()
-			{
-				this.mvcDelete();
-			};
+		{
+			this.mvcDelete();
+		};
 
 		mvc.prototype.uBLInitOR =
 			function()
-			{
-				this.mvcInit();
-			};
+		{
+			this.mvcInit();
+		};
 
-		//*******************************************************************//
+		mvc.prototype.uBLResizeOR =
+			function()
+		{
+			this.mvcResize();
+		};
+
+	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
@@ -356,15 +356,15 @@ define
 
 		mvc.prototype.mvcCreateViewOR =
 			function mvcCreateViewOR()
-			{
-				return this.mvcCreateViewBase();
-			};
+		{
+			return this.mvcCreateViewBase();
+		};
 
 		mvc.prototype.mvcDeleteOR =
 			function mvcDeleteOR()
-			{
-				console.error(this.kWLogNotImpl());
-			};
+		{
+			console.error(this.kWLogNotImpl());
+		};
 
 		mvc.prototype.mvcEmptyOR =
 			function mvcEmptyOR()
@@ -392,33 +392,33 @@ define
 
 		mvc.prototype.mvcInitOR =
 			function mvcInitOR()
-			{
-				console.error(this.kWLogNotImpl());
-			};
+		{
+			console.error(this.kWLogNotImpl());
+		};
 
 		mvc.prototype.mvcLoadOR =
 			function mvcLoadOR()
-			{
-				//console.error(this.kWLogNotImpl());
-			};
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 		mvc.prototype.mvcRefreshOR =
 			function mvcRefreshOR()
-			{
-				//console.error(this.kWLogNotImpl());
-			};
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 		mvc.prototype.mvcResizeOR =
 			function mvcResizeOR()
-			{
-				//console.error(this.kWLogNotImpl());
-			};
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 		mvc.prototype.mvcRetrieveOR =
 			function mvcRetrieveOR()
-			{
-				//console.error(this.kWLogNotImpl());
-			};
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 	//*******************************************************************//
 	//***																	   
@@ -428,44 +428,43 @@ define
 
 		mvc.prototype.mvcAddChild =
 			function mvcAddChild(obj)
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWChildren"));
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogInvalid("m_kWChildren"));
-				}
+			if (!validate.isNotNull(obj))
+			{
+				console.error(this.kWLogInvalid('obj'));
+			}
 
-				if (!validate.isNotNull(obj))
-				{
-					console.error(this.kWLogInvalid('obj'));
-				}
-
-				this.m_kWChildren.kWAddChild(obj);
-			};
-
+			this.m_kWChildren.kWAddChild(obj);
+		};
 
 		mvc.prototype.mvcCreateChildren =
 			function mvcCreateChildren()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogRepeated());
+			}
 
-				if (validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogRepeated());
-				}
+			if (!validate.isString(this.m_sKWID))
+			{
+				console.error(this.kWLogInvalid("m_sKWID"));
+			}
 
-				if (!validate.isString(this.m_sKWID))
-				{
-					console.error(this.kWLogInvalid("m_sKWID"));
-				}
+			this.m_kWChildren = new children();
+			this.m_kWChildren.setKWID(this.m_sKWID);
 
-				this.m_kWChildren = new children();
-				this.m_kWChildren.setKWID(this.m_sKWID);
-
-				this.m_kWChildren.check();
-				this.m_kWChildren.init();
-			};
+			this.m_kWChildren.check();
+			this.m_kWChildren.init();
+		};
 
 		mvc.prototype.mvcCreateView =
 			function mvcCreateView() 
@@ -535,94 +534,94 @@ define
 
 		mvc.prototype.mvcDelete =
 			function mvcDelete()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				this.m_kWChildren.kWDelete();
+			}
 
-				if (validate.isNotNull(this.m_kWChildren))
-				{
-					this.m_kWChildren.kWDelete();
-				}
+			if (validate.isNotNull(this.m_kWView))
+			{
+				this.m_kWView.kWDelete();
+			}
 
-				if (validate.isNotNull(this.m_kWView))
-				{
-					this.m_kWView.kWDelete();
-				}
+			this.kWUnSubscribeDefault();
+			this.kWUnSubscribeReady();
+			this.kWUnSubscribeResize();
 
-				this.kWUnSubscribeDefault();
-				this.kWUnSubscribeReady();
-				this.kWUnSubscribeResize();
+			this.m_kWChildren			= null;
+			this.m_kWModel			    = null;
+			this.m_kWValueField		    = null;
+			this.m_kWView			    = null;
+			this.m_kWViewChild		    = null;
+			this.m_kWViewParent		    = null;
 
-				this.m_kWChildren			= null;
-				this.m_kWModel			    = null;
-				this.m_kWValueField		    = null;
-				this.m_kWView			    = null;
-				this.m_kWViewChild		    = null;
-				this.m_kWViewParent		    = null;
-
-				this.mvcDeleteOR();
-			};
+			this.mvcDeleteOR();
+		};
 
 		mvc.prototype.mvcEmpty =
 			function mvcEmpty()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				this.m_kWChildren.kWEmpty();
+			}
 
-				if (validate.isNotNull(this.m_kWChildren))
-				{
-					this.m_kWChildren.kWEmpty();
-				}
-
-				this.mvcEmptyOR();
-			};
+			this.mvcEmptyOR();
+		};
 
 		mvc.prototype.mvcGetChildByID =
 			function mvcGetChildByID(sVal)
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWChildren"));
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogInvalid("m_kWChildren"));
-				}
+			if (!validate.isString(sVal))
+			{
+				console.error(this.kWLogInvalid("sVal"));
+			}
 
-				if (!validate.isString(sVal))
-				{
-					console.error(this.kWLogInvalid("sVal"));
-				}
-
-				return this.m_kWChildren.getKWValByKey(sVal);
-			};
+			return this.m_kWChildren.getKWValByKey(sVal);
+		};
 
 		mvc.prototype.mvcGetChildByIndex =
 			function mvcGetChildByIndex(nVal)
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWChildren"));
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogInvalid("m_kWChildren"));
-				}
+			if (!validate.isNumberNotNeg(nVal))
+			{
+				console.error(this.kWLogInvalid("nVal"));
+			}
 
-				if (!validate.isNumberNotNeg(nVal))
-				{
-					console.error(this.kWLogInvalid("nVal"));
-				}
-
-				return this.m_kWChildren.getKWValByIndex(nVal);
-			};
+			return this.m_kWChildren.getKWValByIndex(nVal);
+		};
 
 		mvc.prototype.mvcGetChildCount =
 			function mvcGetChildCount()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				return 0;
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					return 0;
-				}
-
-				return this.m_kWChildren.getKWLength();
-			};
+			return this.m_kWChildren.getKWLength();
+		};
 
 		mvc.prototype.mvcGetViewBool =
 			function mvcGetViewBool(sVal)
@@ -773,18 +772,18 @@ define
 
 		mvc.prototype.mvcLoad =
 			function mvcLoad()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWChildren"));
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogInvalid("m_kWChildren"));
-				}
+			this.mvcLoadOR();
 
-				this.mvcLoadOR();
-
-				this.m_kWChildren.kWLoad();
-			};
+			this.m_kWChildren.kWLoad();
+		};
 
 		mvc.prototype.mvcPublish =
 			function mvcPublish(sTopic, data)
@@ -868,33 +867,33 @@ define
 
 		mvc.prototype.mvcRefresh =
 			function mvcRefresh()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWChildren"));
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogInvalid("m_kWChildren"));
-				}
+			this.mvcRefreshOR();
 
-				this.mvcRefreshOR();
-
-				this.m_kWChildren.kWRefresh();
-			};
+			this.m_kWChildren.kWRefresh();
+		};
 
 		mvc.prototype.mvcResize =
 			function mvcResize()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWChildren))
 			{
-				//console.log(this.kWLogCalled());
+				console.error(this.kWLogInvalid("m_kWChildren"));
+			}
 
-				if (!validate.isNotNull(this.m_kWChildren))
-				{
-					console.error(this.kWLogInvalid("m_kWChildren"));
-				}
+			this.mvcResizeOR();
 
-				this.mvcResizeOR();
-
-				this.m_kWChildren.kWResize();
-			};
+			this.m_kWChildren.kWResize();
+		};
 
 		mvc.prototype.mvcRetrieve =
 			function mvcRetrieve()
@@ -1485,31 +1484,31 @@ define
 
 		mvc.prototype.mvcUnSubscribeReady =
 			function mvcUnSubscribeReady()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_hKWReady))
 			{
-				//console.log(this.kWLogCalled());
+				return;
+			}
 
-				if (!validate.isNotNull(this.m_hKWReady))
-				{
-					return;
-				}
-
-				this.mvcUnSubscribe(this.m_hKWReady);
-				//console.debug(this.kWLogStatus("hi"));
-			};
+			this.mvcUnSubscribe(this.m_hKWReady);
+			//console.debug(this.kWLogStatus("hi"));
+		};
 
 		mvc.prototype.mvcUnSubscribeResize =
 			function mvcUnSubscribeResize()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_hKWResize))
 			{
-				//console.log(this.kWLogCalled());
+				return;
+			}
 
-				if (!validate.isNotNull(this.m_hKWResize))
-				{
-					return;
-				}
-
-				this.mvcUnSubscribe(this.m_hKWResize);
-				//console.debug(this.kWLogStatus("hi"));
-			};
+			this.mvcUnSubscribe(this.m_hKWResize);
+			//console.debug(this.kWLogStatus("hi"));
+		};
 
 		return mvc;
 

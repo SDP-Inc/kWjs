@@ -14,12 +14,12 @@
 define
 (
 	[
-		"kWUtils/value/i18n/obj",
+		"kWUtils/value/simpleText/obj",
 		"kWStat/validate"
 	],
 	function
 	(
-		i18n,
+		simpleText,
 		validate
 	)
 	{
@@ -34,21 +34,21 @@ define
 		{
 			//console.log("hRefLang::constructor");
 			
-			this.m_sKWExt	    = "hRefLang";
+			this.m_sKWExt = "hRefLang";
 		}
 
-		hRefLang.sKWKey = "kwKeyHRefLang";
+		hRefLang.sKWKey = "kwHRefLang";
 
-		hRefLang.prototype = new i18n();
+		hRefLang.prototype = new simpleText();
 		hRefLang.prototype.constructor = hRefLang;
-		hRefLang.constructor = i18n.prototype.constructor;
+		hRefLang.constructor = simpleText.prototype.constructor;
 
 		hRefLang.prototype.check = 
 			function check() 
 		{
-			this.m_sKWI18NKey = hRefLang.sKWKey;
+			this.m_sKWSimpleKey	= hRefLang.sKWKey;
 
-			i18n.prototype.check.call(this);
+			simpleText.prototype.check.call(this);
 			//console.log(this.kWLogCalled());
 		};
 
@@ -56,7 +56,7 @@ define
 			function init() 
 		{
 			//console.log(this.kWLogCalled());
-			i18n.prototype.init.call(this);
+			simpleText.prototype.init.call(this);
 		};
 
 	//*******************************************************************//
@@ -83,7 +83,7 @@ define
 	//***
 	//*******************************************************************//
 
-		hRefLang.prototype.i18nInitOR = 
+		hRefLang.prototype.stInitOR =
 			function()
 		{
 			this.hrlInit(); 
@@ -108,7 +108,7 @@ define
 			
 			if (validate.isString(this.m_kWValue))
 			{
-				//console.debug(this.kWLogDisplay("m_kWValue", this.m_kWValue));
+				console.debug(this.kWLogDisplay("m_kWValue", this.m_kWValue));
 			}
 		};
 		

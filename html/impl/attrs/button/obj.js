@@ -676,7 +676,7 @@ define
 
 			if (!validate.isNotNull(this.m_kWAutoFocus))
 			{
-				this.kWCreateAutoFocusImpl();
+				this.buttonCreateAutoFocusImpl();
 			}
 
 			this.m_kWAutoFocus.setKWValue(this.m_bKWAutoFocus);
@@ -701,7 +701,7 @@ define
 
 			if (!validate.isNotNull(this.m_kWDisabled))
 			{
-				this.kWCreateDisabledImpl();
+				this.buttonCreateDisabledImpl();
 			}
 
 			this.m_kWDisabled.setKWValue(this.m_bKWDisabled);
@@ -726,7 +726,7 @@ define
 
 			if (!validate.isNotNull(this.m_kWForm))
 			{
-				this.kWCreateFormImpl();
+				this.buttonCreateFormImpl();
 			}
 
 			this.m_kWForm.setKWValue(this.m_sKWForm);
@@ -751,7 +751,7 @@ define
 
 			if (!validate.isNotNull(this.m_kWName))
 			{
-				this.kWCreateNameImpl();
+				this.buttonCreateNameImpl();
 			}
 
 			this.m_kWName.setKWValue(this.m_sKWName);
@@ -776,7 +776,7 @@ define
 
 			if (!validate.isNotNull(this.m_kWType))
 			{
-				this.kWCreateTypeImpl();
+				this.buttonCreateTypeImpl();
 			}
 
 			this.m_kWType.setKWValue(this.m_sKWType);
@@ -801,7 +801,7 @@ define
 
 			if (!validate.isNotNull(this.m_kWValue))
 			{
-				this.kWCreateValueImpl();
+				this.buttonCreateValueImpl();
 			}
 
 			this.m_kWValue.setKWValue(this.m_sKWValue);

@@ -38,7 +38,7 @@ define
 
 		function a()
 		{
-			//console.log("a::constructor");
+			console.log("a::constructor");
 
 			this.m_sKWTag				= "a";
 			
@@ -184,6 +184,7 @@ define
 			theAttrs = new attrs();
 			
 			theAttrs.setKWHRef(this.m_sKWHRef);
+			theAttrs.setKWHRefLang(this.m_sKWHRefLang);
 			theAttrs.setKWMedia(this.m_sKWMedia);
 			theAttrs.setKWRel(this.m_sKWRel);
 			theAttrs.setKWTarget(this.m_sKWTarget);
@@ -235,8 +236,10 @@ define
 		{
 			var value = null;
 			
+			var sValue = null;
+
 			//console.log(this.kWLogCalled());
-			
+
 			if (this.m_bKWHRefRetrieved)
 			{
 				return;
@@ -250,15 +253,18 @@ define
 			value = this.m_kWView.getKWHRef();
 			if (!validate.isNotNull(value))
 			{
-				//console.error(this.kWLogErrRetrieve("value"));
+				console.error(this.kWLogErrRetrieve("value"));
 			}
-			
-			this.m_sKWHRef = value.getKWValue();
-			if (validate.isString(this.m_sKWHRef))
+
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
-				this.m_bKWHRefRetrieved = true;
+				return;
 			}
+
+			this.m_sKWHRef = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+			this.m_bKWHRefRetrieved = true;
 		};
 		
 		a.prototype.aRetrieveHRefLang = 
@@ -266,8 +272,10 @@ define
 		{
 			var value = null;
 			
+			var sValue = null;
+
 			//console.log(this.kWLogCalled());
-			
+
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -278,12 +286,15 @@ define
 			{
 				console.error(this.kWLogErrRetrieve("value"));
 			}
-			
-			this.m_sKWHRefLang = value.getKWValue();
-			if (validate.isString(this.m_sKWHRefLang))
+
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRefLang", this.m_sKWHRefLang));
+				return;
 			}
+
+			this.m_sKWHRefLang = sValue;
+			console.debug(this.kWLogDisplay("m_sKWHRefLang", this.m_sKWHRefLang));
 		};
 		
 		a.prototype.aRetrieveHRefRaw = 
@@ -291,8 +302,10 @@ define
 		{
 			var value = null;
 			
+			var sValue	= null;
+
 			//console.log(this.kWLogCalled());
-			
+
 			if (this.m_bKWHRefRetrieved)
 			{
 				return;
@@ -308,21 +321,25 @@ define
 			{
 				console.error(this.kWLogErrRetrieve("value"));
 			}
-			
-			this.m_sKWHRef = value.getKWValue();
-			if (validate.isString(this.m_sKWHRef))
+
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
-				this.m_bKWHRefRetrieved = true;
+				return
 			}
+
+			this.m_sKWHRef = sValue;
+
+			//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+			this.m_bKWHRefRetrieved = true;
 		};
 		
 		a.prototype.aRetrieveIsClickHandled = 
 			function aRetrieveIsClickHandled()
 		{
-			var value			= null;
+			var value   = null;
 			
-			var bIsClickHandled = null;
+			var bValue  = null;
 			
 			//console.log(this.kWLogCalled());
 			
@@ -337,19 +354,22 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			bIsClickHandled = value.getKWValue();
-			if (validate.isBool(bIsClickHandled))
+			bValue = value.getKWValue();
+			if (!validate.isBool(bValue))
 			{
-				this.m_bKWIsClickHandled = bIsClickHandled;
+				return;
 			}
 
+			this.m_bKWIsClickHandled = bValue;
 			//console.debug(this.kWLogDisplay("m_bKWIsClickHandled", this.m_bKWIsClickHandled));
 		};
 		
 		a.prototype.aRetrieveMedia = 
 			function aRetrieveMedia()
 		{
-			var value = null;
+			var value   = null;
+
+			var sValue  = null;
 			
 			//console.log(this.kWLogCalled());
 			
@@ -364,11 +384,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWMedia = value.getKWValue();
-			if (validate.isString(this.m_sKWMedia))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWMedia", this.m_sKWMedia));
+				return;
 			}
+
+			this.m_sKWMedia = value.getKWValue();
+			//console.debug(this.kWLogDisplay("m_sKWMedia", this.m_sKWMedia));
 		};
 		
 		a.prototype.aRetrieveRel = 
@@ -376,6 +399,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -389,11 +414,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWRel = value.getKWValue();
-			if (validate.isString(this.m_sKWRel))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWRel", this.m_sKWRel));
+				return;
 			}
+
+			this.m_sKWRel = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWRel", this.m_sKWRel));
 		};
 		
 		a.prototype.aRetrieveTarget = 
@@ -403,11 +431,6 @@ define
 			
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWTarget))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -419,11 +442,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWTarget = value.getKWValue();
-			if (validate.isString(this.m_sKWTarget))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWTarget", this.m_sKWTarget));
+				return;
 			}
+
+			this.m_sKWTarget = sValue;
+			console.debug(this.kWLogDisplay("m_sKWTarget", this.m_sKWTarget));
 		};
 		
 		a.prototype.aSubscribe = 

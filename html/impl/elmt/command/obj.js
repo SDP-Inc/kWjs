@@ -74,6 +74,13 @@ define
 	//***
 	//*******************************************************************//
 
+		command.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.commandSetDisabled(bVal)
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		public callbacks
@@ -110,6 +117,18 @@ define
 			console.error(this.kWLogNotImpl());
 		};
 		
+		command.prototype.mvcEnableOR =
+			function()
+		{
+			this.commandEnable();
+		};
+
+		command.prototype.mvcDisableOR =
+			function()
+		{
+			this.commandDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (non-overrides)
@@ -161,7 +180,23 @@ define
 			return theAttrs;
 		};
 		
-		command.prototype.commandInit = 
+		command.prototype.commandDisable =
+			function commandDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.commandDisableOR();
+		};
+
+		command.prototype.commandEnable =
+			function commandEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.commandEnableOR();
+		};
+
+		command.prototype.commandInit =
 			function commandInit()
 		{
 			//console.log(this.kWLogCalled());
@@ -273,6 +308,19 @@ define
 			}
 		};
 		
+		command.prototype.commandSetDisabled =
+			function commandSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return command;
 
 	}

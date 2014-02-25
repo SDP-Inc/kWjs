@@ -68,6 +68,13 @@ define
 	//***
 	//*******************************************************************//
 
+		optGroup.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.ogSetDisabled(bVal)
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		public callbacks
@@ -110,13 +117,37 @@ define
 			this.ogRetrieve();
 		};
 		
+		optGroup.prototype.mvcEnableOR =
+			function()
+		{
+			this.ogEnable();
+		};
+
+		optGroup.prototype.mvcDisableOR =
+			function()
+		{
+			this.ogDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
 
-		optGroup.prototype.ogInitOR = 
+		optGroup.prototype.ogDisableOR =
+			function ogDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		optGroup.prototype.ogEnableOR =
+			function ogEnableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		optGroup.prototype.ogInitOR =
 			function ogInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -148,6 +179,22 @@ define
 		{
 			//console.log(this.kWLogCalled());
 			return new view();
+		};
+
+		optGroup.prototype.optGroupDisable =
+			function optGroupDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.optGroupDisableOR();
+		};
+
+		optGroup.prototype.optGroupEnable =
+			function optGroupEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.optGroupEnableOR();
 		};
 
 		optGroup.prototype.ogInit = 
@@ -224,6 +271,19 @@ define
 			}
 		};
 		
+		optGroup.prototype.ogSetDisabled =
+			function ogSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return optGroup;
 
 	}

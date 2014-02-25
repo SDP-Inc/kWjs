@@ -91,6 +91,24 @@ define
 			this.m_bKWLoop = bVal;
 		};
 
+		audio.prototype.setKWMuted =
+			function(bVal)
+		{
+			this.m_bKWMuted = bVal;
+		};
+
+		audio.prototype.setKWPreload =
+			function(sVal)
+		{
+			this.m_sKWPreload = sVal;
+		};
+
+		audio.prototype.setKWSrc =
+			function(sVal)
+		{
+			this.m_sKWSrc = sVal;
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		public callbacks
@@ -188,8 +206,8 @@ define
 		{
 			//console.log(this.kWLogCalled());
 			
-			this.audioRetrieveControls();
 			this.audioRetrieveAutoPlay();
+			this.audioRetrieveControls();
 			this.audioRetrieveLoop();
 			this.audioRetrieveMuted();
 			this.audioRetrievePreload();
@@ -217,11 +235,13 @@ define
 			}
 			
 			bVal = value.getKWValue();
-			if (validate.isBool(bVal))
+			if (!validate.isBool(bVal))
 			{
-				this.m_bKWAutoPlay = bVal;
-				//console.debug(this.kWLogDisplay("m_bKWAutoPlay", this.m_bKWAutoPlay));
+				return;
 			}
+
+			this.m_bKWAutoPlay = bVal;
+			//console.debug(this.kWLogDisplay("m_bKWAutoPlay", this.m_bKWAutoPlay));
 		};
 		
 		audio.prototype.audioRetrieveControls = 
@@ -247,9 +267,11 @@ define
 			bVal = value.getKWValue();
 			if (validate.isBool(bVal))
 			{
-				this.m_bKWControls = bVal;
-				//console.debug(this.kWLogDisplay("m_bKWControls", this.m_bKWControls));
+				return;
 			}
+
+			this.m_bKWControls = bVal;
+			//console.debug(this.kWLogDisplay("m_bKWControls", this.m_bKWControls));
 		};
 		
 		audio.prototype.audioRetrieveLoop = 
@@ -301,16 +323,21 @@ define
 			}
 			
 			bVal = value.getKWValue();
-			if (validate.isBool(bVal))
+			if (!validate.isBool(bVal))
 			{
-				this.m_bKWMuted = bVal;
-				//console.debug(this.kWLogDisplay("m_bKWMuted", this.m_bKWMuted));
+				return;
 			}
+
+			this.m_bKWMuted = bVal;
+			//console.debug(this.kWLogDisplay("m_bKWMuted", this.m_bKWMuted));
 		};
+
 		audio.prototype.audioRetrievePreload = 
 			function audioRetrievePreload()
 		{
-			var value = null;
+			var value   = null;
+
+			var sValue  = null;
 			
 			//console.log(this.kWLogCalled());
 			
@@ -325,18 +352,23 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWPreload = value.getKWValue();
-			if (validate.isString(this.m_sKWPreload))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWPreload", this.m_sKWPreload));
+				return;
 			}
-		};		
+
+			this.m_sKWPreload = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWPreload", this.m_sKWPreload));
+		};
 		
 		audio.prototype.audioRetrieveSrc = 
 			function audioRetrieveSrc()
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -350,11 +382,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWSrc = value.getKWValue();
-			if (validate.isString(this.m_sKWSrc))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWSrc", this.m_sKWSrc));
+				return;
 			}
+
+			this.m_sKWSrc = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWSrc", this.m_sKWSrc));
 		};
 
 		return audio;

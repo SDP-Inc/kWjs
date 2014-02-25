@@ -43,9 +43,6 @@ define
 			this.m_sKWExt	    = "viewPort";
 
 			this.m_strategy     = null;
-
-			this.m_nKWHeight    = -1;
-			this.m_nKWWidth     = -1;
 		}
 
 		viewPort.prototype = new log();
@@ -75,13 +72,13 @@ define
 		viewPort.prototype.getKWHeight =
 			function()
 		{
-			return this.m_nKWHeight;
+			return this.viewPortGetHeight();
 		};
 
 		viewPort.prototype.getKWWidth =
 			function()
 		{
-			return this.m_nKWWidth;
+			return this.viewPortGetWidth();
 		};
 
 	//*******************************************************************//
@@ -104,11 +101,6 @@ define
 		viewPort.prototype.uBLInitOR = function()
 		{
 			this.viewPortInit();
-		};
-
-		viewPort.prototype.uBLResizeOR = function()
-		{
-			this.viewPortResize();
 		};
 
 	//*******************************************************************//
@@ -171,8 +163,8 @@ define
 
 		};
 
-		viewPort.prototype.viewPortResize =
-			function viewPortResize()
+		viewPort.prototype.viewPortGetHeight =
+			function viewPortGetHeight()
 		{
 			//console.log(this.kWLogCalled());
 
@@ -183,8 +175,23 @@ define
 
 			this.m_strategy.resize();
 
-			this.m_nKWHeight = this.m_strategy.getKWHeight();
+			return this.m_strategy.getKWHeight();
 			this.m_nKWWidth = this.m_strategy.getKWWidth();
+		};
+
+		viewPort.prototype.viewPortGetWidth =
+			function viewPortGetWidth()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_strategy))
+			{
+				this.kWLogInvalid("m_strategy");
+			}
+
+			this.m_strategy.resize();
+
+			return this.m_strategy.getKWWidth();
 		};
 
 		return viewPort;

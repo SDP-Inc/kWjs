@@ -72,6 +72,13 @@ define
 	//***
 	//*******************************************************************//
 
+		fieldset.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.fsSetDisabled(bVal)
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		public callbacks
@@ -114,11 +121,35 @@ define
 			this.fsRetrieve();
 		};
 		
+		fieldset.prototype.mvcEnableOR =
+			function()
+		{
+			this.fsEnable();
+		};
+
+		fieldset.prototype.mvcDisableOR =
+			function()
+		{
+			this.fsDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
+
+		fieldset.prototype.fsDisableOR =
+			function fsDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		fieldset.prototype.fsEnableOR =
+			function fsEnableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
 
 		fieldset.prototype.fsInitOR = 
 			function fsInitOR()
@@ -154,7 +185,23 @@ define
 			return new view();
 		};
 		
-		fieldset.prototype.fsInit = 
+		fieldset.prototype.fsDisable =
+			function fsDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.fsDisableOR();
+		};
+
+		fieldset.prototype.fsEnable =
+			function fsEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.fsEnableOR();
+		};
+
+		fieldset.prototype.fsInit =
 			function fsInit()
 		{
 			//console.log(this.kWLogCalled());
@@ -259,6 +306,19 @@ define
 			}
 		};
 		
+		fieldset.prototype.fsSetDisabled =
+			function fsSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return fieldset;
 
 	}

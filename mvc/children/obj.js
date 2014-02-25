@@ -75,27 +75,39 @@ define
 
 		children.prototype.kWAddChild =
 			function(obj)
-			{
-				this.childrenAddChild(obj);
-			};
+		{
+			this.childrenAddChild(obj);
+		};
+
+		children.prototype.kWDisable =
+			function(obj)
+		{
+			this.childrenDisable(obj);
+		};
+
+		children.prototype.kWEnable =
+			function(obj)
+		{
+			this.childrenEnable(obj);
+		};
 
 		children.prototype.kWLoad =
 			function()
-			{
-				this.childrenLoad();
-			};
+		{
+			this.childrenLoad();
+		};
 
 		children.prototype.kWRefresh =
 			function()
-			{
-				this.childrenRefresh();
-			};
+		{
+			this.childrenRefresh();
+		};
 
 		children.prototype.kWResize =
 			function()
-			{
-				this.childrenResize();
-			};
+		{
+			this.childrenResize();
+		};
 
 	//*******************************************************************//
 	//***																	   
@@ -123,27 +135,75 @@ define
 
 		children.prototype.childrenAddChild =
 			function childrenAddChild(obj)
+		{
+			var sID = null;
+
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(obj))
 			{
-				var sID = null;
+				console.error(this.kWLogInvalid("obj"));
+			}
 
-				//console.log(this.kWLogCalled());
-
-				if (!validate.isNotNull(obj))
-				{
-					console.error(this.kWLogInvalid("obj"));
-				}
-
+			sID = obj.getKWID();
+			if (!validate.isString(sID))
+			{
+				console.error(this.kWLogErrRetrieve("sID"));
 				sID = obj.getKWID();
-				if (!validate.isString(sID))
+			}
+
+			this.kWAdd(sID, obj);
+
+			//console.debug(this.kWLogDisplay("sID", sID));
+		};
+
+		children.prototype.childrenEnable =
+			function childrenEnable()
+		{
+			var nLength = -1;
+			var nIndex = -1;
+
+			var child = null;
+
+			//console.log(this.kWLogCalled());
+
+			nLength = this.getKWLength();
+
+			for (nIndex = 0; nIndex < nLength; nIndex++)
+			{
+				child = this.getKWValByIndex(nIndex);
+				if (!validate.isNotNull(child))
 				{
-					console.error(this.kWLogErrRetrieve("sID"));
-					sID = obj.getKWID();
+					console.error(this.kWLogErrRetrieve("child"));
 				}
 
-				this.kWAdd(sID, obj);
+				child.kWEnable();
+			}
+		};
 
-				//console.debug(this.kWLogDisplay("sID", sID));
-			};
+		children.prototype.childrenDisable =
+			function childrenDisable()
+		{
+			var nLength = -1;
+			var nIndex = -1;
+
+			var child = null;
+
+			//console.log(this.kWLogCalled());
+
+			nLength = this.getKWLength();
+
+			for (nIndex = 0; nIndex < nLength; nIndex++)
+			{
+				child = this.getKWValByIndex(nIndex);
+				if (!validate.isNotNull(child))
+				{
+					console.error(this.kWLogErrRetrieve("child"));
+				}
+
+				child.kWDisable();
+			}
+		};
 
 		children.prototype.childrenInit =
 			function childrenInit()

@@ -117,6 +117,18 @@ define
 			this.uBLDelete();
 		};
 
+		log.prototype.kWDisable =
+			function()
+		{
+			this.uBLDisable();
+		};
+
+		log.prototype.kWEnable =
+			function()
+		{
+			this.uBLEnable();
+		};
+
 		log.prototype.kWLogCalled =
 			function()
 		{
@@ -286,6 +298,18 @@ define
 			console.error(this.bLogNotImpl());
 		};
 
+		log.prototype.uBLDisableOR =
+			function uBLDisableOR()
+		{
+			//console.error(this.bLogNotImpl());
+		};
+
+		log.prototype.uBLEnableOR =
+			function uBLEnableOR()
+		{
+			//console.error(this.bLogNotImpl());
+		};
+
 		log.prototype.uBLInitOR =
 			function uBLInitOR()
 		{
@@ -318,23 +342,39 @@ define
 
 		log.prototype.uBLCheck =
 			function uBLCheck()
-			{
-				//console.log(this.bLogCalled("uBLCheck"));
+		{
+			//console.log(this.bLogCalled("uBLCheck"));
 
-				this.uBLCreateID();
-				this.uBLRetrieveJSClass();
-				this.uBLRetrieveLang();
+			this.uBLCreateID();
+			this.uBLRetrieveJSClass();
+			this.uBLRetrieveLang();
 
-				//console.log(this.bLogExit("uBLCheck"));
-			};
+			//console.log(this.bLogExit("uBLCheck"));
+		};
 
 		log.prototype.uBLDelete =
 			function uBLDelete()
-			{
-				//console.log(this.bLogCalled("uBLDelete"));
+		{
+			//console.log(this.bLogCalled("uBLDelete"));
 
-				this.uBLDeleteOR();
-			};
+			this.uBLDeleteOR();
+		};
+
+		log.prototype.uBLDisable =
+			function uBLDisable()
+		{
+			//console.log(this.bLogCalled("uBLDelete"));
+
+			this.uBLDisableOR();
+		};
+
+		log.prototype.uBLEnable =
+			function uBLEnable()
+		{
+			//console.log(this.bLogCalled("uBLDelete"));
+
+			this.uBLEnableOR();
+		};
 
 		log.prototype.uBLInit =
 			function uBLInit()

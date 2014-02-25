@@ -336,6 +336,18 @@ define
 			this.mvcDelete();
 		};
 
+		mvc.prototype.uBLDisableOR =
+			function()
+		{
+			this.mvcDisable();
+		};
+
+		mvc.prototype.uBLEnableOR =
+			function()
+		{
+			this.mvcEnable();
+		};
+
 		mvc.prototype.uBLInitOR =
 			function()
 		{
@@ -364,6 +376,18 @@ define
 			function mvcDeleteOR()
 		{
 			console.error(this.kWLogNotImpl());
+		};
+
+		mvc.prototype.mvcDisableOR =
+			function mvcDisableOR()
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		mvc.prototype.mvcEnableOR =
+			function mvcEnableOR()
+		{
+			//console.error(this.kWLogNotImpl());
 		};
 
 		mvc.prototype.mvcEmptyOR =
@@ -561,6 +585,19 @@ define
 			this.mvcDeleteOR();
 		};
 
+		mvc.prototype.mvcDisable =
+			function mvcDisable()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isNotNull(this.m_kWChildren))
+			{
+				this.m_kWChildren.kWDisable();
+			}
+
+			this.mvcDisableOR();
+		};
+
 		mvc.prototype.mvcEmpty =
 			function mvcEmpty()
 		{
@@ -572,6 +609,19 @@ define
 			}
 
 			this.mvcEmptyOR();
+		};
+
+		mvc.prototype.mvcEnable =
+			function mvcEnable()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (validate.isNotNull(this.m_kWChildren))
+			{
+				this.m_kWChildren.kWEnable();
+			}
+
+			this.mvcEnableOR();
 		};
 
 		mvc.prototype.mvcGetChildByID =

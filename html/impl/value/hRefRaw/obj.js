@@ -34,7 +34,7 @@ define
 		{
 			//console.log("hRefRaw::constructor");
 			
-			this.m_sKWExt		= "hRefRaw";
+			this.m_sKWExt = "hRefRaw";
 		}
 
 		hRefRaw.sKWKey = "kwHRefRaw";

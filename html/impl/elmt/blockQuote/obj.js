@@ -166,6 +166,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (validate.isString(this.m_sKWCite))
@@ -184,11 +186,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWCite = value.getKWValue();
-			if (validate.isString(this.m_sKWCite))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWCite", this.m_sKWCite));
+				return;
 			}
+
+			this.m_sKWCite = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWCite", this.m_sKWCite));
 		};
 		
 		return blockQuote;

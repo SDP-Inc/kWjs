@@ -77,6 +77,13 @@ define
 	//***
 	//*******************************************************************//
 
+		textArea.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.taSetDisabled(bVal)
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		public callbacks
@@ -115,13 +122,37 @@ define
 			this.taRetrieve();
 		};
 		
+		textArea.prototype.mvcEnableOR =
+			function()
+		{
+			this.taEnable();
+		};
+
+		textArea.prototype.mvcDisableOR =
+			function()
+		{
+			this.taDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
 
-		textArea.prototype.taInitOR = 
+		textArea.prototype.taDisableOR =
+			function taDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		textArea.prototype.taDisableOR =
+			function taDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		textArea.prototype.taInitOR =
 			function taInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -162,6 +193,22 @@ define
 		{
 			//console.log(this.kWLogCalled());
 			return new view();
+		};
+
+		textArea.prototype.taDisable =
+			function taDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.aDisableOR();
+		};
+
+		textArea.prototype.taEnable =
+			function taEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.taEnableOR();
 		};
 
 		textArea.prototype.taInit = 
@@ -525,6 +572,19 @@ define
 			}
 		};		
 		
+		textArea.prototype.taSetDisabled =
+			function taSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return textArea;
 
 	}

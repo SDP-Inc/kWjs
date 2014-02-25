@@ -76,6 +76,13 @@ define
 			return this.m_sKWValue;
 		};
 
+		option.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.optionSetDisabled(bVal)
+		};
+
 		option.prototype.setKWSelected =
 			function(bVal)
 		{
@@ -94,18 +101,6 @@ define
 	//***
 	//*******************************************************************//
 		
-		option.prototype.disable = 
-			function() 
-		{
-			this.elmtDisable();
-		};
-
-		elmt.prototype.enable =
-			function() 
-		{
-			this.elmtEnable();
-		};
-
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (non-overrides)
@@ -136,13 +131,37 @@ define
 			this.optionRetrieve();
 		};
 		
+		option.prototype.mvcEnableOR =
+			function()
+		{
+			this.optionEnable();
+		};
+
+		option.prototype.mvcDisableOR =
+			function()
+		{
+			this.optionDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
 
-		option.prototype.optionInitOR = 
+		option.prototype.optionDisableOR =
+			function optionDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		option.prototype.optionEnableOR =
+			function optionEnableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		option.prototype.optionInitOR =
 			function optionInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -178,32 +197,22 @@ define
 			return new view();
 		};
 
-		option.prototype.optionDisable = 
+		option.prototype.optionDisable =
 			function optionDisable()
 		{
 			//console.log(this.kWLogCalled());
-			
-			if (!validate.isNotNull(this.m_kWAttrs))
-			{
-				console.error(this.kWLogInvalid("m_kWAttrs"));
-			}
-			
-			this.m_kWAttrs.disable();
+			this.setKWDisabled(true);
+			this.optionDisableOR();
 		};
-		
-		option.prototype.optionEnable = 
+
+		option.prototype.optionEnable =
 			function optionEnable()
 		{
 			//console.log(this.kWLogCalled());
-			
-			if (!validate.isNotNull(this.m_kWAttrs))
-			{
-				console.error(this.kWLogInvalid("m_kWAttrs"));
-			}
-			
-			this.m_kWAttrs.enable();
+			this.setKWDisabled(false);
+			this.optionEnableOR();
 		};
-		
+
 		option.prototype.optionInit = 
 			function optionInit()
 		{
@@ -337,6 +346,19 @@ define
 			}
 			
 			//console.debug(this.kWLogDisplay("m_sKWValue", this.m_sKWValue))
+		};
+
+		option.prototype.optionSetDisabled =
+			function optionSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
 		};
 
 		return option;

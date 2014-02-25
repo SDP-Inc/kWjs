@@ -181,13 +181,10 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWFormAction))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -199,25 +196,25 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWFormAction = value.getKWValue();
-			if (validate.isString(this.m_sKWFormAction))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWFormAction", this.m_sKWFormAction));
+				return;
 			}
-		};		
+
+			this.m_sKWFormAction = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWFormAction", this.m_sKWFormAction));
+		};
 		
 		submit.prototype.submitRetrieveFormEncType = 
 			function submitRetrieveFormEncType()
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWFormEncType))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -229,25 +226,25 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWFormEncType = value.getKWValue();
-			if (validate.isString(this.m_sKWFormEncType))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWFormEncType", this.m_sKWFormEncType));
+				return;
 			}
-		};		
+
+			this.m_sKWFormEncType = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWFormEncType", this.m_sKWFormEncType));
+		};
 		
 		submit.prototype.submitRetrieveFormMethod = 
 			function submitRetrieveFormMethod()
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWFormMethod))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -259,12 +256,15 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWFormMethod = value.getKWValue();
-			if (validate.isString(this.m_sKWFormMethod))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWFormMethod", this.m_sKWFormMethod));
+				return;
 			}
-		};		
+
+			this.m_sKWFormMethod = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWFormMethod", this.m_sKWFormMethod));
+		};
 		
 		submit.prototype.submitRetrieveFormNoValidate = 
 			function submitRetrieveFormNoValidate()
@@ -287,11 +287,13 @@ define
 			}
 			
 			bVal = value.getKWValue();
-			if (validate.isBool(bVal))
+			if (!validate.isBool(bVal))
 			{
-				this.m_bKWFormNoValidate = bVal;
-				//console.debug(this.kWLogDisplay("m_bKWFormNoValidate", this.m_bKWFormNoValidate));
+				return;
 			}
+
+			this.m_bKWFormNoValidate = bVal;
+			//console.debug(this.kWLogDisplay("m_bKWFormNoValidate", this.m_bKWFormNoValidate));
 		};
 		
 		submit.prototype.submitRetrieveFormTarget = 
@@ -299,13 +301,10 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
-			if (validate.isString(this.m_sKWFormTarget))
-			{
-				console.error(this.kWLogRepeated());
-			}
-
 			if (!validate.isNotNull(this.m_kWView))
 			{
 				console.error(this.kWLogInvalid("m_kWView"));
@@ -317,12 +316,15 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWFormTarget = value.getKWValue();
-			if (validate.isString(this.m_sKWFormTarget))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWFormTarget", this.m_sKWFormTarget));
+				return;
 			}
-		};		
+
+			this.m_sKWFormTarget = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWFormTarget", this.m_sKWFormTarget));
+		};
 		
 		return submit;
 

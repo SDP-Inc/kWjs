@@ -167,7 +167,9 @@ define
 		base.prototype.baseRetrieveHRef =
 			function baseRetrieveHRef()
 		{
-			var value = null;
+			var value   = null;
+
+			var sValue  = null;
 			
 			//console.log(this.kWLogCalled());
 			
@@ -182,11 +184,15 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWHRef = value.getKWValue();
-			if (validate.isString(this.m_sKWHRef))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+				return;
 			}
+
+			this.m_sKWHRef = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+
 		};
 		
 		base.prototype.baseRetrieveTarget =
@@ -194,6 +200,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -207,11 +215,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWTarget = value.getKWValue();
-			if (validate.isString(this.m_sKWTarget))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWTarget", this.m_sKWTarget));
+				return;
 			}
+
+			this.m_sKWTarget = sValue;
+    		//console.debug(this.kWLogDisplay("m_sKWTarget", this.m_sKWTarget));
 		};
 		
 		return base;

@@ -73,6 +73,13 @@ define
 	//***
 	//*******************************************************************//
 
+		keygen.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.kgSetDisabled(bVal)
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		public callbacks
@@ -115,13 +122,37 @@ define
 			this.kgRetrieve();
 		};
 		
+		keygen.prototype.mvcEnableOR =
+			function()
+		{
+			this.kgEnable();
+		};
+
+		keygen.prototype.mvcDisableOR =
+			function()
+		{
+			this.kgDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
 	//***
 	//*******************************************************************//
 
-		keyGen.prototype.kgInitOR = 
+		keygen.prototype.kgDisableOR =
+			function kgDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		keygen.prototype.kgEnableOR =
+			function kgEnableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		keyGen.prototype.kgInitOR =
 			function kgInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -159,7 +190,23 @@ define
 			return new view();
 		};
 
-		keyGen.prototype.kgInit = 
+		keygen.prototype.kgDisable =
+			function kgDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.kgDisableOR();
+		};
+
+		keygen.prototype.kgEnable =
+			function kgEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.kgEnableOR();
+		};
+
+		keyGen.prototype.kgInit =
 			function kgInit()
 		{
 			//console.log(this.kWLogCalled());
@@ -357,6 +404,19 @@ define
 			}
 		};
 		
+		keygen.prototype.kgSetDisabled =
+			function kgSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return keyGen;
 
 	}

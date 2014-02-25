@@ -77,6 +77,13 @@ define
 	//***
 	//*******************************************************************//
 
+		select.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.selectSetDisabled(bVal)
+		};
+
 		select.prototype.setKWMultiple =
 			function(bVal)
 		{
@@ -159,6 +166,18 @@ define
 			this.selectRetrieve();
 		};
 		
+		select.prototype.mvcEnableOR =
+			function()
+		{
+			this.selectEnable();
+		};
+
+		select.prototype.mvcDisableOR =
+			function()
+		{
+			this.selectDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
@@ -171,7 +190,19 @@ define
 			console.error(this.kWLogNotImpl());
 		};
 		
-		select.prototype.selectInitOR = 
+		select.prototype.selectDisableOR =
+			function selectDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		select.prototype.selectEnableOR =
+			function selectEnableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		select.prototype.selectInitOR =
 			function selectInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -217,6 +248,22 @@ define
 			this.selectClickOR(sValue);
 		};
 		
+		select.prototype.selectDisable =
+			function selectDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.selectDisableOR();
+		};
+
+		select.prototype.selectEnable =
+			function selectEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.selectEnableOR();
+		};
+
 		select.prototype.selectInit = 
 			function selectInit()
 		{
@@ -461,6 +508,19 @@ define
 			this.m_kWDom.change(this.callbackChange);
 		}
 		
+		select.prototype.selectSetDisabled =
+			function selectSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return select;
 		
 	}

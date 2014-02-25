@@ -98,6 +98,13 @@ define
 			return this.inputGetVal();
 		};
 
+		input.prototype.setKWDisabled =
+			function(bVal)
+		{
+			this.m_bKWDisabled = bVal;
+			this.inputSetDisabled(bVal)
+		};
+
 		input.prototype.setKWName = function(sVal)
 		{
 			this.m_sKWName = sVal;
@@ -150,6 +157,18 @@ define
 			this.inputRetrieve();
 		};
 		
+		input.prototype.mvcEnableOR =
+			function()
+		{
+			this.inputEnable();
+		};
+
+		input.prototype.mvcDisableOR =
+			function()
+		{
+			this.inputDisable();
+		};
+
 	//*******************************************************************//
 	//***																	   
 	//***		private methods (overrides)
@@ -162,7 +181,19 @@ define
 			console.error(this.kWLogNotImpl());
 		};
 		
-		input.prototype.inputInitOR = 
+		input.prototype.inputDisableOR =
+			function inputDisableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		input.prototype.inputEnableOR =
+			function inputEnableOR(sValue)
+		{
+			//console.error(this.kWLogNotImpl());
+		};
+
+		input.prototype.inputInitOR =
 			function inputInitOR()
 		{
 			console.error(this.kWLogNotImpl());
@@ -234,7 +265,23 @@ define
 			return attrs;
 		};
 
-		input.prototype.inputGetVal = 
+		input.prototype.inputDisable =
+			function inputDisable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(true);
+			this.inputDisableOR();
+		};
+
+		input.prototype.inputEnable =
+			function inputEnable()
+		{
+			//console.log(this.kWLogCalled());
+			this.setKWDisabled(false);
+			this.inputEnableOR();
+		};
+
+		input.prototype.inputGetVal =
 			function inputGetVal()
 		{
 			var sVal = null;
@@ -881,6 +928,19 @@ define
 			}
 		};
 		
+		input.prototype.inputSetDisabled =
+			function inputSetDisabled()
+		{
+			//console.log(this.kWLogCalled());
+
+			if (!validate.isNotNull(this.m_kWAttrs))
+			{
+				return
+			}
+
+			this.m_kWAttrs.setKWDisabled(this.m_bKWDisabled);
+		};
+
 		return input;
 
 	}

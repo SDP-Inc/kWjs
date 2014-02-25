@@ -185,7 +185,9 @@ define
 		area.prototype.areaRetrieveCoords = 
 			function areaRetrieveCoords()
 		{
-			var value = null;
+			var value   = null;
+
+			var sValue  = null;
 			
 			//console.log(this.kWLogCalled());
 			
@@ -200,11 +202,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWCoords = value.getKWValue();
-			if (validate.isString(this.m_sKWCoords))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWCoords", this.m_sKWCoords));
+				return;
 			}
+
+			this.m_sKWCoords = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWCoords", this.m_sKWCoords));
 		};
 		
 		area.prototype.areaRetrieveHRef = 
@@ -221,6 +226,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (this.m_bKWHRefRetrieved)
@@ -239,12 +246,15 @@ define
 				//console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWHRef = value.getKWValue();
-			if (validate.isString(this.m_sKWHRef))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
-				this.m_bKWHRefRetrieved = true;
+				return;
 			}
+
+			this.m_sKWHRef = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+			this.m_bKWHRefRetrieved = true;
 		};
 		
 		area.prototype.areaRetrieveHRefLang = 
@@ -252,6 +262,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -265,11 +277,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWHRefLang = value.getKWValue();
-			if (validate.isString(this.m_sKWHRefLang))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRefLang", this.m_sKWHRefLang));
+				return;
 			}
+
+			this.m_sKWHRefLang = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWHRefLang", this.m_sKWHRefLang));
 		};
 		
 		area.prototype.areaRetrieveHRefRaw = 
@@ -277,6 +292,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (this.m_bKWHRefRetrieved)
@@ -295,12 +312,15 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWHRef = value.getKWValue();
-			if (validate.isString(this.m_sKWHRef))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
-				this.m_bKWHRefRetrieved = true;
+				return;
 			}
+
+			this.m_sKWHRef = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWHRef", this.m_sKWHRef));
+			this.m_bKWHRefRetrieved = true;
 		};
 		
 		area.prototype.areaRetrieveMedia = 
@@ -308,6 +328,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -321,11 +343,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWMedia = value.getKWValue();
-			if (validate.isString(this.m_sKWMedia))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWMedia", this.m_sKWMedia));
+				return;
 			}
+
+			this.m_sKWMedia = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWMedia", this.m_sKWMedia));
 		};
 		
 		area.prototype.areaRetrieveRel = 
@@ -333,6 +358,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -346,11 +373,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWRel = value.getKWValue();
-			if (validate.isString(this.m_sKWRel))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWRel", this.m_sKWRel));
+				return;
 			}
+
+			this.m_sKWRel = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWRel", this.m_sKWRel));
 		};
 		
 		area.prototype.areaRetrieveShape = 
@@ -358,6 +388,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -371,11 +403,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWShape = value.getKWValue();
-			if (validate.isString(this.m_sKWShape))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWShape", this.m_sKWShape));
+				return;
 			}
+
+			this.m_sKWShape = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWShape", this.m_sKWShape));
 		};
 		
 		area.prototype.areaRetrieveTarget = 
@@ -383,6 +418,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -396,11 +433,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWTarget = value.getKWValue();
-			if (validate.isString(this.m_sKWTarget))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWTarget", this.m_sKWTarget));
+				return;
 			}
+
+			this.m_sKWTarget = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWTarget", this.m_sKWTarget));
 		};
 		
 		area.prototype.areaRetrieveType = 
@@ -408,6 +448,8 @@ define
 		{
 			var value = null;
 			
+			var sValue  = null;
+
 			//console.log(this.kWLogCalled());
 			
 			if (!validate.isNotNull(this.m_kWView))
@@ -421,11 +463,14 @@ define
 				console.error(this.kWLogErrRetrieve("value"));
 			}
 			
-			this.m_sKWType = value.getKWValue();
-			if (validate.isString(this.m_sKWType))
+			sValue = value.getKWValue();
+			if (!validate.isString(sValue))
 			{
-				//console.debug(this.kWLogDisplay("m_sKWType", this.m_sKWType));
+				return;
 			}
+
+			this.m_sKWType = sValue;
+			//console.debug(this.kWLogDisplay("m_sKWType", this.m_sKWType));
 		};
 		
 		return area;

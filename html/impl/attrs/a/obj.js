@@ -53,12 +53,6 @@ define
 			this.m_kWTarget		= null;
 			this.m_kWType		= null;
 			
-			this.m_sKWHRef		= null;
-			this.m_sKWHRefLang	= null;
-			this.m_sKWMedia		= null;
-			this.m_sKWRel		= null;
-			this.m_sKWTarget	= null;
-			this.m_sKWType		= null;
 		}
 
 		a.prototype = new html();
